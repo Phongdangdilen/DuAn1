@@ -241,7 +241,7 @@
             // 
             // dgvSP_BanChay
             // 
-            dgvSP_BanChay.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvSP_BanChay.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSP_BanChay.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSP_BanChay.Dock = DockStyle.Fill;
             dgvSP_BanChay.Location = new Point(3, 19);

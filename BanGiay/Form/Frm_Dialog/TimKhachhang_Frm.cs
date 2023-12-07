@@ -15,8 +15,10 @@ namespace PRL.Frm_Main
     public partial class TimKhachhang_Frm : System.Windows.Forms.Form
     {
         KhachHangService _Ser_KhachHang = new KhachHangService();
+        List<Khachhang> _lstKhachHang = new List<Khachhang>();
         int idClicked;
         public int ChooseID;
+        int sdt;
         public TimKhachhang_Frm()
         {
             InitializeComponent(); LoadGird(null);
@@ -29,15 +31,32 @@ namespace PRL.Frm_Main
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            Khachhang khachhang = new Khachhang();
-            khachhang.Tenkhachhang = txtTen.Text;
-            khachhang.Sdt = txtSdt.Text;
-            khachhang.Trangthai = true;
+            _lstKhachHang.Clear();
+            _lstKhachHang = _Ser_KhachHang.GetAllKhachhang(null);
+            if (txtTen.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập tên!");
+            }
+            else if (!int.TryParse(txtSdt.Text, out sdt))
+            {
+                MessageBox.Show("Vui lòng nhấp sđt hợp lệ");
+            }
+            else if (_lstKhachHang.Any(a => a.Sdt == txtSdt.Text))
+            {
+                MessageBox.Show("Số điện thoại này đã được đăng kí!");
+            }
+            else
+            {
+                Khachhang khachhang = new Khachhang();
+                khachhang.Tenkhachhang = txtTen.Text;
+                khachhang.Sdt = txtSdt.Text;
+                khachhang.Diemkhachhang = 0;
+                khachhang.Trangthai = true;
 
 
-            MessageBox.Show(_Ser_KhachHang.AddKhachHang(khachhang));
-            LoadGird(null);
-
+                MessageBox.Show(_Ser_KhachHang.AddKhachHang(khachhang));
+                LoadGird(null);
+            }
         }
         public void LoadGird(string search)
         {

@@ -110,7 +110,15 @@ namespace BanGiay.Form.US
             dgvSP.Columns[7].Name = "Số lượng";
             dgvSP.Columns[8].Name = "Giá";
             dgvSP.Rows.Clear();
+            if (txtSearch ==null && Searchtype == null)
+            {
             _lstGiay_ChiTietGiay = _Ser_Giay_ChiTietGiay.GetAll("true", "Trạng thái Giày");
+            }
+            else
+            {
+                _lstGiay_ChiTietGiay = _Ser_Giay_ChiTietGiay.GetAll(txtSearch, Searchtype);
+
+            }
             foreach (var item in _lstGiay_ChiTietGiay)
             {
                 dgvSP.Rows.Add(stt++, item.tenGiay, item.tenThuongHieu, item.tenKichCo, item.tenMauSac, item.tenChatLieu, item.tenKieuDang, item.soLuongCon, item.gia);
@@ -227,7 +235,7 @@ namespace BanGiay.Form.US
                             var objGiayChuaTonTai = _ser_GiayChiTiet.GetByID(idSanPham_Clicked);
                             objGiayChuaTonTai.Soluongcon = objGiayChuaTonTai.Soluongcon - formSoluongMua.soLuongMua;
                             objGiayChuaTonTai.Ngaysua = dateTime;
-                           var a =_ser_GiayChiTiet.Sua(idSanPham_Clicked, objGiayChuaTonTai);
+                            var a = _ser_GiayChiTiet.Sua(idSanPham_Clicked, objGiayChuaTonTai);
                             LoadGridGH(int.Parse(txtMaHoaDon.Text), "Mã hóa đơn");
                         }
                         else
@@ -338,8 +346,12 @@ namespace BanGiay.Form.US
         public void LoadKhachHang(int? id)
         {
             var Obj = _Ser_KhachHang.GetAllKhachhang(null).FirstOrDefault(x => x.Makhachhang == id);
-            txtMaKhachhang.Text = Obj.Makhachhang.ToString();
-            txtTenKhachHang.Text = Obj.Tenkhachhang.ToString();
+            if (Obj == null)
+            {
+                return;
+            }
+            txtMaKhachhang.Text = Obj.Makhachhang == null ? "N/A" : Obj.Makhachhang.ToString();
+            txtTenKhachHang.Text = Obj.Tenkhachhang == null ? "N/A" : Obj.Tenkhachhang.ToString();
             txtMaNhanVien.Text = LoginManager.Instance.IdTaiKhoan.ToString();
             txtDiem_KH.Text = Obj.Diemkhachhang == null ? "0 điểm" : Obj.Diemkhachhang.ToString() + " điểm";
         }
@@ -367,7 +379,7 @@ namespace BanGiay.Form.US
 
                         }
                         MessageBox.Show("Đã 'xóa' mặt hàng trong hóa đơn");
-                        LoadGridSP(null,null);
+                        LoadGridSP(null, null);
                         LoadGridGH(int.Parse(txtMaHoaDon.Text), "Mã hóa đơn");
                         LamMoi_IDHoaDon();
                     }
@@ -554,14 +566,23 @@ namespace BanGiay.Form.US
         {
             var Obj = _Ser_KhachHang.GetAllKhachhang(null).FirstOrDefault(x => x.Makhachhang == int.Parse(txtMaKhachhang.Text));
             var objUuDai = _ser_UuDai.GetUudai_InTime();
+
+            double tongTienSP = TinhTongTien_HoaDon(dgvHDCT);
+            int? phanTram_GiamGia = PhanTramUuDai(objUuDai);
+            int? diemKH = Obj.Diemkhachhang;
+
+            double giamGia = tongTienSP * (phanTram_GiamGia ?? 0) / 100;
+            double giamGiaDiemKH = (diemKH ?? 0) * 1000;
+
             if (chbox_Dung_DiemKH.Checked)
             {
-                txtTongTien.Text = ((TinhTongTien_HoaDon(dgvHDCT) * (PhanTramUuDai(objUuDai) == 0 ? 1 : PhanTramUuDai(objUuDai))) - (Obj.Diemkhachhang * 1000)).ToString();
+
+                txtTongTien.Text = (tongTienSP - giamGia - giamGiaDiemKH).ToString();
                 txtGhiChu.Text += $" - Đã dùng {Obj.Diemkhachhang} điểm = {Obj.Diemkhachhang * 1000} VNĐ";
             }
             else
             {
-                txtTongTien.Text = (TinhTongTien_HoaDon(dgvHDCT) * (PhanTramUuDai(objUuDai) == 0 ? 1 : PhanTramUuDai(objUuDai))).ToString();
+                txtTongTien.Text = (tongTienSP - giamGia).ToString();
                 string diemDungTruocDo = $" - Đã dùng {Obj.Diemkhachhang} điểm = {Obj.Diemkhachhang * 1000} VNĐ";
                 txtGhiChu.Text = txtGhiChu.Text.Replace(diemDungTruocDo, "");
             }
@@ -658,13 +679,18 @@ namespace BanGiay.Form.US
                         {
                             TimKhachhang_Frm formTimKhachHang = new TimKhachhang_Frm();
                             DBContext _db = new();
-                            var objKhachhang = _db.Khachhangs.FirstOrDefault(a => a.Makhachhang == formTimKhachHang.ChooseID);
+                            var objKhachhang = _db.Khachhangs.FirstOrDefault(a => a.Makhachhang == int.Parse(txtMaKhachhang.Text));
                             if (chbox_Dung_DiemKH.Checked == true)
                             {
                                 objKhachhang.Diemkhachhang = 0;
                                 _Ser_KhachHang.UpdateKhachHang(objKhachhang);
                             }
-                            objKhachhang.Diemkhachhang = objKhachhang.Diemkhachhang + (_lstHoadonChiTiet.Count * 10);
+                            int? soluongMuaHang = 0;
+                            foreach (var item in _lstHoadonChiTiet)
+                            {
+                                soluongMuaHang += item.Hoadonchitiet.Soluongmua;
+                            }
+                            objKhachhang.Diemkhachhang = objKhachhang.Diemkhachhang + soluongMuaHang;
                             _Ser_KhachHang.UpdateKhachHang(objKhachhang);
 
                             MessageBox.Show("Đã 'thanh toán' thành công hóa đơn");
@@ -776,12 +802,13 @@ namespace BanGiay.Form.US
             {
                 var objGiay_HoaDonChiTiet = _ser_GiayChiTiet.GetByID(item.Hoadonchitiet.Magiaychitiet);
                 objGiay_HoaDonChiTiet.Soluongcon = objGiay_HoaDonChiTiet.Soluongcon + item.Hoadonchitiet.Soluongmua;
-                _ser_GiayChiTiet.Sua(item.Hoadonchitiet.Magiaychitiet, objGiay_HoaDonChiTiet);
-                _Ser_HoaDonChiTiet.Xoa(item.Hoadonchitiet.Mahoadon);
+                var a = _ser_GiayChiTiet.Sua(item.Hoadonchitiet.Magiaychitiet, objGiay_HoaDonChiTiet);
+                int? id = item.Hoadonchitiet.Mahoadonchitiet;
+                var b = _Ser_HoaDonChiTiet.Xoa(id);
             }
             foreach (var item in _lstHoaDon)
             {
-                _Ser_HoaDon.Xoa(item.Hoadon.Mahoadon);
+                var a = _Ser_HoaDon.Xoa(item.Hoadon.Mahoadon);
 
             }
             //
@@ -796,7 +823,7 @@ namespace BanGiay.Form.US
         }
         private void btnTimKiem_SP_Click(object sender, EventArgs e)
         {
-
+            LoadGridSP(txtTimKiem_SP.Text, "Tên giày");
         }
 
     }

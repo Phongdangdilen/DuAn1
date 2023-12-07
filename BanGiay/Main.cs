@@ -191,6 +191,7 @@ namespace BanGiay
         }
         private void Main_Load(object sender, EventArgs e)
         {
+            btnBanHang.PerformClick();
             this.Hide();
             OpenLoginForm();
             if (LoginManager.Instance.MaChucVu == 1)

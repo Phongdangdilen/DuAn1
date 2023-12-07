@@ -144,7 +144,7 @@
             // 
             // dgvHDCT
             // 
-            dgvHDCT.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvHDCT.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvHDCT.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvHDCT.Dock = DockStyle.Fill;
             dgvHDCT.Location = new Point(3, 19);

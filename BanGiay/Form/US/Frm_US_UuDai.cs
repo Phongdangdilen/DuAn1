@@ -1,5 +1,6 @@
 ﻿using BUS.Services;
 using DAL.Models.DomainClass;
+using DAL.Models.ModelRefer;
 using PRL.Frm_Main;
 using System;
 using System.Collections.Generic;
@@ -100,6 +101,7 @@ namespace BanGiay.Form.US
             uudai.Phantram = int.Parse(txtphantram.Text);
             uudai.Soluong = int.Parse(txtSoluong.Text);
             uudai.Ngaybatdau = ngayBatDau;
+            uudai.Mataikhoan = LoginManager.Instance.IdTaiKhoan;
             uudai.Ngayketthuc = ngayKetThuc;
 
             if (ngayBatDau <= DateTime.Now && DateTime.Now <= ngayKetThuc)
@@ -139,6 +141,7 @@ namespace BanGiay.Form.US
             uudai.Soluong = int.Parse(txtSoluong.Text);
             uudai.Ngaybatdau = ngayBatDau;
             uudai.Ngayketthuc = ngayKetThuc;
+            uudai.Mataikhoan = LoginManager.Instance.IdTaiKhoan;
 
             DateTime now = DateTime.Now;
 

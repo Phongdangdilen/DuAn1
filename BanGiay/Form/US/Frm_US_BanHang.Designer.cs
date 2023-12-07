@@ -74,8 +74,6 @@
             panel8 = new Panel();
             btnTimKiem_SP = new Button();
             panel10 = new Panel();
-            cbbTimKiem_SP = new ComboBox();
-            panel9 = new Panel();
             txtTimKiem_SP = new TextBox();
             btnLamMoi = new Button();
             groupBox2 = new GroupBox();
@@ -607,8 +605,6 @@
             // 
             panel8.Controls.Add(btnTimKiem_SP);
             panel8.Controls.Add(panel10);
-            panel8.Controls.Add(cbbTimKiem_SP);
-            panel8.Controls.Add(panel9);
             panel8.Controls.Add(txtTimKiem_SP);
             panel8.Controls.Add(btnLamMoi);
             panel8.Dock = DockStyle.Top;
@@ -626,7 +622,7 @@
             btnTimKiem_SP.FlatAppearance.MouseDownBackColor = Color.FromArgb(69, 97, 120);
             btnTimKiem_SP.FlatStyle = FlatStyle.Flat;
             btnTimKiem_SP.ForeColor = Color.White;
-            btnTimKiem_SP.Location = new Point(462, 0);
+            btnTimKiem_SP.Location = new Point(299, 0);
             btnTimKiem_SP.Name = "btnTimKiem_SP";
             btnTimKiem_SP.Size = new Size(82, 35);
             btnTimKiem_SP.TabIndex = 6;
@@ -637,27 +633,10 @@
             // panel10
             // 
             panel10.Dock = DockStyle.Left;
-            panel10.Location = new Point(446, 0);
+            panel10.Location = new Point(283, 0);
             panel10.Name = "panel10";
             panel10.Size = new Size(16, 35);
             panel10.TabIndex = 5;
-            // 
-            // cbbTimKiem_SP
-            // 
-            cbbTimKiem_SP.Dock = DockStyle.Left;
-            cbbTimKiem_SP.FormattingEnabled = true;
-            cbbTimKiem_SP.Location = new Point(299, 0);
-            cbbTimKiem_SP.Name = "cbbTimKiem_SP";
-            cbbTimKiem_SP.Size = new Size(147, 23);
-            cbbTimKiem_SP.TabIndex = 3;
-            // 
-            // panel9
-            // 
-            panel9.Dock = DockStyle.Left;
-            panel9.Location = new Point(283, 0);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(16, 35);
-            panel9.TabIndex = 2;
             // 
             // txtTimKiem_SP
             // 
@@ -848,8 +827,6 @@
         private Panel panel8;
         private Button btnTimKiem_SP;
         private Panel panel10;
-        private ComboBox cbbTimKiem_SP;
-        private Panel panel9;
         private TextBox txtTimKiem_SP;
         private Button btnLamMoi;
         private GroupBox groupBox2;

@@ -228,7 +228,7 @@
             // 
             // dgvHD
             // 
-            dgvHD.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvHD.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvHD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvHD.Dock = DockStyle.Fill;
             dgvHD.Location = new Point(3, 19);
@@ -251,7 +251,7 @@
             // 
             // dgvKH
             // 
-            dgvKH.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvKH.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvKH.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvKH.Dock = DockStyle.Fill;
             dgvKH.Location = new Point(3, 57);

@@ -72,6 +72,7 @@
             Controls.Add(txtSoLuong);
             Controls.Add(label1);
             Name = "SoLuongMua_Frm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SoLuongMua";
             Load += SoLuongMua_Frm_Load;
             ResumeLayout(false);

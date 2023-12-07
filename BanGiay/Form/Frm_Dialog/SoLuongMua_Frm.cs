@@ -33,7 +33,7 @@ namespace PRL.Frm_Main
             catch
             {
                 MessageBox.Show(" Chỉ chấp nhận số không chứa khoảng trắng!");
-            }   
+            }
         }
 
         private void txtSoLuong_Enter(object sender, EventArgs e)

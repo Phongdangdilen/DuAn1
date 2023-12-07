@@ -102,8 +102,10 @@ namespace DAL.Repositories
             {
                 var existedObj = _db.Hoadonchitiets.FirstOrDefault(a => a.Mahoadonchitiet == id);
 
-                if (existedObj == null) return false;
-
+                if (existedObj == null)
+                {
+                    return false;
+                }
                 _db.Hoadonchitiets.Remove(existedObj);
                 _db.SaveChanges();
 
