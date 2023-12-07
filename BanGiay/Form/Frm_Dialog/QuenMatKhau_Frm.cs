@@ -70,7 +70,7 @@ namespace PRL.Frm_Main
             {
                 string confirmationCode = GenerateRandomCode();
 
-                GuiTinEmail(txtEmail.Text, confirmationCode);
+                GuiTinEmail(txtEmail.Text, "Verification code: " + confirmationCode);
             }
             else
             {

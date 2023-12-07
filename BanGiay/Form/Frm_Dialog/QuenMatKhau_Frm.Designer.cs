@@ -145,6 +145,7 @@
             // btnXacNhan_DoiMatKhau
             // 
             btnXacNhan_DoiMatKhau.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnXacNhan_DoiMatKhau.ForeColor = Color.White;
             btnXacNhan_DoiMatKhau.Location = new Point(218, 196);
             btnXacNhan_DoiMatKhau.Name = "btnXacNhan_DoiMatKhau";
             btnXacNhan_DoiMatKhau.Size = new Size(120, 40);
@@ -167,6 +168,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.White;
             label4.Location = new Point(132, 19);
             label4.Name = "label4";
             label4.Size = new Size(128, 25);
@@ -176,6 +178,7 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.ForeColor = Color.White;
             label5.Location = new Point(20, 64);
             label5.Name = "label5";
             label5.Size = new Size(161, 15);
@@ -185,6 +188,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.ForeColor = Color.White;
             label6.Location = new Point(20, 138);
             label6.Name = "label6";
             label6.Size = new Size(151, 15);
