@@ -62,6 +62,8 @@ namespace BanGiay.Form.US
             {
                 dgv_HD.Rows.Add(stt++, x.Hoadon.Mahoadon, x.tenUuDai, x.Hoadon.Ngaytao, x.tenTaiKhoan, x.tenKhachHang, x.tenHinhThucThanhToan, x.Hoadon.Tongtien == null ? "N/A" : x.Hoadon.Tongtien, x.Hoadon.Trangthai == true ? "Đã thanh toán" : "Chưa thanht toán");
             }
+
+            dgv_HD.Columns[0].Width = 30;
         }
         public void LoadGridGH(int? idHoaDOn, string? SearchType)
         {
@@ -91,6 +93,7 @@ namespace BanGiay.Form.US
             ChooseObj.Name = "Chon";
             dgvHDCT.Columns.Add(ChooseObj);
 
+            dgvHDCT.Columns[0].Width = 30;
 
         }
         public void LoadGridSP(string? txtSearch, string? Searchtype)
@@ -179,11 +182,12 @@ namespace BanGiay.Form.US
                 SoLuongMua_Frm formSoluongMua = new SoLuongMua_Frm();
                 formSoluongMua.ShowDialog();
 
-                if (formSoluongMua.soLuongMua > 0 && formSoluongMua.soLuongMua < objCellClick.giaychitiet.Soluongcon && txtMaHoaDon.Text != "...")
+                if (formSoluongMua.soLuongMua > 0 && formSoluongMua.soLuongMua < objCellClick.giaychitiet.Soluongcon && txtMaHoaDon.Text != "N/A")
                 {
                     if (_lstHoadonChiTiet.Any(a => a.Hoadonchitiet.Magiaychitiet == idSanPham_Clicked))
                     {
                         var Obj = _lstHoadonChiTiet.FirstOrDefault(a => a.Hoadonchitiet.Magiaychitiet == idSanPham_Clicked);
+
                         var Sua = _Ser_HoaDonChiTiet.Sua(Obj.Hoadonchitiet.Mahoadonchitiet, new Hoadonchitiet()
                         {
                             Magiaychitiet = Obj.Hoadonchitiet.Magiaychitiet,
@@ -197,14 +201,15 @@ namespace BanGiay.Form.US
                             MessageBox.Show("Đã 'thêm' thành công 1 giày mới vào hóa đơn.");
                             var objGiayDaTonTai = _ser_GiayChiTiet.GetByID(idSanPham_Clicked);
                             objGiayDaTonTai.Soluongcon = objGiayDaTonTai.Soluongcon - formSoluongMua.soLuongMua;
-                            _ser_GiayChiTiet.Sua(idSanPham_Clicked, objGiayDaTonTai);
+                            objGiayDaTonTai.Ngaysua = dateTime;
+                            var a = _ser_GiayChiTiet.Sua(idSanPham_Clicked, objGiayDaTonTai);
                             LoadGridGH(int.Parse(txtMaHoaDon.Text), "Mã hóa đơn");
+                            LoadGridSP(null, null);
                         }
                         else
                         {
                             MessageBox.Show("'Thêm' thất bại");
                         }
-
                     }
                     else
                     {
@@ -221,7 +226,8 @@ namespace BanGiay.Form.US
                             MessageBox.Show("Đã 'thêm' thành công 1 giày mới vào hóa đơn");
                             var objGiayChuaTonTai = _ser_GiayChiTiet.GetByID(idSanPham_Clicked);
                             objGiayChuaTonTai.Soluongcon = objGiayChuaTonTai.Soluongcon - formSoluongMua.soLuongMua;
-                            _ser_GiayChiTiet.Sua(idSanPham_Clicked, objGiayChuaTonTai);
+                            objGiayChuaTonTai.Ngaysua = dateTime;
+                           var a =_ser_GiayChiTiet.Sua(idSanPham_Clicked, objGiayChuaTonTai);
                             LoadGridGH(int.Parse(txtMaHoaDon.Text), "Mã hóa đơn");
                         }
                         else
@@ -237,7 +243,7 @@ namespace BanGiay.Form.US
                 }
                 else
                 {
-                    if (txtMaHoaDon.Text == "...")
+                    if (txtMaHoaDon.Text == "N/A")
                     {
                         MessageBox.Show("Chưa chọn hóa đơn!");
                         return;
@@ -312,15 +318,22 @@ namespace BanGiay.Form.US
         }
         private void ptbChonKhachHang_Click(object sender, EventArgs e)
         {
-            TimKhachhang_Frm formTimKhachHang = new TimKhachhang_Frm();
-            formTimKhachHang.ShowDialog();
-            LoadKhachHang(formTimKhachHang.ChooseID);
-            chbox_Dung_DiemKH.Enabled = true;
+            if (txtMaHoaDon.Text == "N/A" || txtMaHoaDon.Text == "N/A")
+            {
+                MessageBox.Show("Vui lòng chọn hóa đơn trước!");
+            }
+            else
+            {
+                TimKhachhang_Frm formTimKhachHang = new TimKhachhang_Frm();
+                formTimKhachHang.ShowDialog();
+                LoadKhachHang(formTimKhachHang.ChooseID);
+                chbox_Dung_DiemKH.Enabled = true;
 
-            var objHoaDon_KhachHang = _Ser_HoaDon.GetByID(int.Parse(txtMaHoaDon.Text));
-            objHoaDon_KhachHang.Makhachhang = int.Parse(txtMaKhachhang.Text);
-            _Ser_HoaDon.Sua(int.Parse(txtMaHoaDon.Text), objHoaDon_KhachHang);
-            LoadGridHD(null, null);
+                var objHoaDon_KhachHang = _Ser_HoaDon.GetByID(int.Parse(txtMaHoaDon.Text));
+                objHoaDon_KhachHang.Makhachhang = int.Parse(txtMaKhachhang.Text);
+                _Ser_HoaDon.Sua(int.Parse(txtMaHoaDon.Text), objHoaDon_KhachHang);
+                LoadGridHD(null, null);
+            }
         }
         public void LoadKhachHang(int? id)
         {
@@ -332,37 +345,46 @@ namespace BanGiay.Form.US
         }
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            try
+            if (idHoaDonChiTiet_Clicked.Count == 0)
             {
-                var confirmResult = MessageBox.Show("Xác nhận 'xóa' mặt hàng trong hóa đơn không?", "Xác nhận", MessageBoxButtons.OKCancel);
-
-                if (confirmResult == DialogResult.OK)
+                MessageBox.Show("Vui lòng tích vào ô chọn ở cuối bảng bên phải!");
+            }
+            else
+            {
+                try
                 {
-                    foreach (var item in idHoaDonChiTiet_Clicked)
+                    var confirmResult = MessageBox.Show("Xác nhận 'xóa' mặt hàng trong hóa đơn không?", "Xác nhận", MessageBoxButtons.OKCancel);
+
+                    if (confirmResult == DialogResult.OK)
                     {
-                        var objHoaDonDaCanXoa = _Ser_HoaDonChiTiet.GetByID(item);
-                        var objGiayCanSua = _ser_GiayChiTiet.GetByID(objHoaDonDaCanXoa.Magiaychitiet);
-                        objGiayCanSua.Soluongcon = objGiayCanSua.Soluongcon + objHoaDonDaCanXoa.Soluongmua;
-                        _ser_GiayChiTiet.Sua(objHoaDonDaCanXoa.Magiaychitiet, objGiayCanSua);
-                        var result = _Ser_HoaDonChiTiet.Xoa(item);
+                        foreach (var item in idHoaDonChiTiet_Clicked)
+                        {
+                            var objHoaDonDaCanXoa = _Ser_HoaDonChiTiet.GetByID(item);
+                            var objGiayCanSua = _ser_GiayChiTiet.GetByID(objHoaDonDaCanXoa.Magiaychitiet);
+                            objGiayCanSua.Soluongcon = objGiayCanSua.Soluongcon + objHoaDonDaCanXoa.Soluongmua;
+                            var a = _ser_GiayChiTiet.Sua(objHoaDonDaCanXoa.Magiaychitiet, objGiayCanSua);
+                            var result = _Ser_HoaDonChiTiet.Xoa(item);
 
+                        }
+                        MessageBox.Show("Đã 'xóa' mặt hàng trong hóa đơn");
+                        LoadGridSP(null,null);
+                        LoadGridGH(int.Parse(txtMaHoaDon.Text), "Mã hóa đơn");
+                        LamMoi_IDHoaDon();
                     }
-                    MessageBox.Show("Đã 'xóa' mặt hàng trong hóa đơn");
-                    LoadGridGH(int.Parse(txtMaHoaDon.Text), "Mã hóa đơn");
-                }
-                else
-                {
-                    MessageBox.Show("Đã hủy 'xóa' hóa đơn");
-                }
-                idHoaDonChiTiet_Clicked.Clear();
-                txtTongTienSP.Text = TinhTongTien_HoaDon(dgvHDCT).ToString();
-                LoadTien_ThanhToan();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Thông tin chi tiết: {ex.ToString()}");
-            }
+                    else
+                    {
+                        MessageBox.Show("Đã hủy 'xóa' hóa đơn");
+                    }
+                    idHoaDonChiTiet_Clicked.Clear();
+                    txtTongTienSP.Text = TinhTongTien_HoaDon(dgvHDCT).ToString();
+                    LoadTien_ThanhToan();
 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Thông tin chi tiết: {ex.ToString()}");
+                }
+            }
         }
         private void dgvHDCT_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -449,6 +471,10 @@ namespace BanGiay.Form.US
         }
         private void ptbLamMoiIdHoaDonChiTiet_Click(object sender, EventArgs e)
         {
+            LamMoi_IDHoaDon();
+        }
+        private void LamMoi_IDHoaDon()
+        {
             foreach (DataGridViewRow row in dgvHDCT.Rows)
             {
                 row.Cells["Chon"].Value = false;
@@ -466,6 +492,7 @@ namespace BanGiay.Form.US
             }
             string danhSachIdText = sb.ToString().TrimEnd(',', ' ');
             txtID_HDCT.Text = danhSachIdText;
+
         }
         private bool CheckIfAnyChecked()
         {
@@ -545,7 +572,7 @@ namespace BanGiay.Form.US
             {
                 MessageBox.Show("Vui lòng lựa chọn hình thức thanh toán!");
             }
-            else if (txtSoTienThieu.Text == "...")
+            else if (txtSoTienThieu.Text == "N/A")
             {
                 MessageBox.Show("Bạn chưa nhận tiền!");
             }
@@ -553,11 +580,11 @@ namespace BanGiay.Form.US
             {
                 MessageBox.Show("Bạn chưa nhận đủ tiền!");
             }
-            else if (txtMaHoaDon.Text == "...")
+            else if (txtMaHoaDon.Text == "N/A")
             {
                 MessageBox.Show("Vui lòng chọn mã hóa đơn");
             }
-            else if (int.Parse(txtTongTienSP.Text) == 0 || txtTongTienSP.Text == "...")
+            else if (int.Parse(txtTongTienSP.Text) == 0 || txtTongTienSP.Text == "N/A")
             {
                 MessageBox.Show("Vui lòng kiểm tra lại giỏ hàng!");
             }
@@ -712,6 +739,7 @@ namespace BanGiay.Form.US
                     {
                         MessageBox.Show("Xóa thành công!");
                         LoadGridHD(null, null);
+                        LoadGridSP(null, null);
                         dgvHDCT.Rows.Clear();
                     }
                     else

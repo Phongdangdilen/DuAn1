@@ -370,7 +370,7 @@
             // 
             // dgv_GiaoCa
             // 
-            dgv_GiaoCa.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_GiaoCa.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgv_GiaoCa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_GiaoCa.Dock = DockStyle.Fill;
             dgv_GiaoCa.Location = new Point(3, 57);
@@ -421,7 +421,7 @@
             // 
             // dgvNhanVien
             // 
-            dgvNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgvNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvNhanVien.Dock = DockStyle.Fill;
             dgvNhanVien.Location = new Point(3, 57);
@@ -472,7 +472,7 @@
             // 
             // dgvGCCT
             // 
-            dgvGCCT.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvGCCT.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgvGCCT.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvGCCT.Dock = DockStyle.Fill;
             dgvGCCT.Location = new Point(3, 57);

@@ -365,7 +365,7 @@
             // 
             // dgvSP
             // 
-            dgvSP.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSP.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgvSP.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSP.Dock = DockStyle.Fill;
             dgvSP.Location = new Point(3, 74);
@@ -373,6 +373,7 @@
             dgvSP.RowTemplate.Height = 25;
             dgvSP.Size = new Size(831, 580);
             dgvSP.TabIndex = 1;
+            dgvSP.CellClick += dgvSP_CellClick;
             // 
             // panel2
             // 

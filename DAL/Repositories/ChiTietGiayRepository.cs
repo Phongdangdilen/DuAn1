@@ -145,7 +145,12 @@ namespace DAL.Repositories
                 return true;
 
             }
-            catch { return false; }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
+                return false;
+            }
         }
 
         public bool Them(Giaychitiet Giaychitiet)
