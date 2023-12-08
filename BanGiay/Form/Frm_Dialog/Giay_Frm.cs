@@ -68,16 +68,30 @@ namespace PRL.Form
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
+            bool result;
             if (CheckTextbox())
             {
                 var confirmResult = MessageBox.Show("Xác nhận 'thêm' giày không?", "Xác nhận", MessageBoxButtons.OKCancel);
 
                 if (confirmResult == DialogResult.OK)
                 {
-                    var result = _Ser.Them(new Giay()
+                    var existingProduct = _Ser.GetAll(null, null)
+                            .FirstOrDefault(p =>
+                                p.Tengiay == txtTen.Text);
+                    if (existingProduct != null)
                     {
-                        Tengiay = txtTen.Text
-                    });
+                        MessageBox.Show("Tên giày đã tồn tại!");
+                        result = false;
+                    }
+                    else
+                    {
+                        result = _Ser.Them(new Giay()
+                        {
+                            Tengiay = txtTen.Text
+                        });
+
+                    }
+
 
                     if (result)
                     {

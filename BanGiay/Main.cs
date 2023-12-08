@@ -18,9 +18,6 @@ namespace BanGiay
         public Main()
         {
             InitializeComponent();
-            Frm_US_BanHang US_BanHang = new Frm_US_BanHang();
-            Load_Usercontrol(US_BanHang);
-
         }
         private void ActivateButton(object btnsender)
         {
@@ -163,6 +160,9 @@ namespace BanGiay
             idTaiKhoan = LoginManager.Instance.IdTaiKhoan;
             maChucVu = LoginManager.Instance.MaChucVu;
             hoVaTen = LoginManager.Instance.HoVaTen;
+            txtTenTaiKhoan.Text = hoVaTen;
+            btnBanHang.PerformClick();
+
 
         }
         private void Load_Usercontrol(UserControl userControl)
@@ -180,6 +180,7 @@ namespace BanGiay
             maChucVu = LoginManager.Instance.MaChucVu;
             hoVaTen = LoginManager.Instance.HoVaTen;
 
+            txtTenTaiKhoan.Text = hoVaTen;
             if (idTaiKhoan != 0 || maChucVu != 0)
             {
                 this.Show();

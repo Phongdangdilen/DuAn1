@@ -80,7 +80,7 @@ namespace PRL
                     item.Sdt,
                     item.Mota,
                     item.Mataikhoan,
-                    item.Trangthai
+                    (item.Trangthai == true ? "Đang hoạt động" : "Ngừng hoạt động")
                     );
             }
 
@@ -91,6 +91,7 @@ namespace PRL
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
+            bool result;
             CheckTextbox();
             if (checkedTexbox)
             {
@@ -98,15 +99,29 @@ namespace PRL
 
                 if (confirmResult == DialogResult.OK)
                 {
-                    var result = _Ser.Them(new Thuonghieu()
+                    var existingProduct = _Ser.GetAll(null, null)
+                            .FirstOrDefault(p =>
+                                p.Tenthuonghieu == txtTen.Text &&
+                                p.Email == txtEmail.Text &&
+                                p.Sdt == txtSDT.Text &&
+                                p.Mota == txtMoTa.Text);
+                    if (existingProduct != null)
                     {
-                        Tenthuonghieu = txtTen.Text,
-                        Email = txtEmail.Text,
-                        Sdt = txtSDT.Text,
-                        Mota = txtMoTa.Text,
-                        Mataikhoan = 1,
-                        Trangthai = true
-                    });
+                        MessageBox.Show("Thương hiệu đã tồn tại!");
+                        result = false;
+                    }
+                    else
+                    {
+                         result = _Ser.Them(new Thuonghieu()
+                        {
+                            Tenthuonghieu = txtTen.Text,
+                            Email = txtEmail.Text,
+                            Sdt = txtSDT.Text,
+                            Mota = txtMoTa.Text,
+                            Mataikhoan = 1,
+                            Trangthai = true
+                        });
+                    }
 
                     if (result)
                     {

@@ -68,7 +68,7 @@ namespace PRL
                     item.Tenmausac,
                     item.Mota,
                     item.Mataikhoan,
-                    item.Trangthai
+                    (item.Trangthai == true ? "Đang hoạt động" : "Ngừng hoạt động")
                     );
             }
 
@@ -79,19 +79,34 @@ namespace PRL
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
+            bool result;
             if (CheckTextbox())
             {
                 var confirmResult = MessageBox.Show("Xác nhận 'thêm' màu sắc không?", "Xác nhận", MessageBoxButtons.OKCancel);
 
                 if (confirmResult == DialogResult.OK)
                 {
-                    var result = _Ser.Them(new Mausac()
+                    var existingProduct = _Ser.GetAll(null, null)
+                            .FirstOrDefault(p =>
+                                p.Tenmausac == txtTen.Text &&
+                                p.Mota == txtMoTa.Text);
+                    if (existingProduct != null)
                     {
-                        Tenmausac = txtTen.Text,
-                        Mota = txtMoTa.Text,
-                        Mataikhoan = 1,
-                        Trangthai = true
-                    });
+                        MessageBox.Show("Màu sắc đã tồn tại!");
+                        result = false;
+                    }
+                    else
+                    {
+
+
+                        result = _Ser.Them(new Mausac()
+                        {
+                            Tenmausac = txtTen.Text,
+                            Mota = txtMoTa.Text,
+                            Mataikhoan = 1,
+                            Trangthai = true
+                        });
+                    }
 
                     if (result)
                     {

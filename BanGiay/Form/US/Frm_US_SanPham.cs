@@ -36,7 +36,6 @@ namespace BanGiay.Form.US
         List<Mausac> _lstMauSac = new List<Mausac>();
         List<Thuonghieu> _lstThuongHieu = new List<Thuonghieu>();
         List<Giaychitiet> _lstGiayChiTiet = new List<Giaychitiet>();
-        DateTime dateTime = DateTime.Now;
         DangNhap_Frm formDangNhap = new DangNhap_Frm();
         int idClicked;
         bool checkedTexbox;
@@ -208,7 +207,7 @@ namespace BanGiay.Form.US
                     item.Gia,
                     item.Mota,
                     item.Soluongcon,
-                    item.Trangthai);
+                    (item.Trangthai==true?"Đang hoạt động":"Ngừng hoạt động"));
             }
 
         }
@@ -218,33 +217,50 @@ namespace BanGiay.Form.US
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
+            DateTime dateTime = DateTime.Now;
             CheckTextbox();
             if (checkedTexbox)
             {
 
                 try
                 {
-
                     var confirmResult = MessageBox.Show("Xác nhận 'thêm' giày không?", "Xác nhận", MessageBoxButtons.OKCancel);
 
                     if (confirmResult == DialogResult.OK)
                     {
-                        var result = _Ser_ChiTietGiay.Them(new Giaychitiet()
+                        bool result;
+                        var existingProduct = _Ser_ChiTietGiay.GetAll(null, null)
+                                .FirstOrDefault(p =>
+                                    p.Magiay == (int)cbbTenGiay.SelectedValue &&
+                                    p.Machatlieu == (int)cbbTenChatLieu.SelectedValue &&
+                                    p.Mamausac == (int)cbbTenMauSac.SelectedValue &&
+                                    p.Makichco == (int)cbbTenKichCo.SelectedValue &&
+                                    p.Mathuonghieu == (int)cbbTenThuongHieu.SelectedValue &&
+                                    p.Makieudang == (int)cbbTenKieuDang.SelectedValue);
+                        if (existingProduct == null)
                         {
-                            Magiay = (int)cbbTenGiay.SelectedValue,
-                            Machatlieu = (int)cbbTenChatLieu.SelectedValue,
-                            Mamausac = (int)cbbTenMauSac.SelectedValue,
-                            Makichco = (int)cbbTenKichCo.SelectedValue,
-                            Mathuonghieu = (int)cbbTenThuongHieu.SelectedValue,
-                            Makieudang = (int)cbbTenKieuDang.SelectedValue,
-                            Soluongcon = int.Parse(txtSoLuong.Text),
-                            Ngaytao = dateTime,
-                            Nguoitao = LoginManager.Instance.IdTaiKhoan,
-                            Nguoisua = LoginManager.Instance.IdTaiKhoan,
-                            Gia = double.Parse(txtGia.Text),
-                            Mota = txtMoTa.Text,
-                            Trangthai = true
-                        });
+                            result = _Ser_ChiTietGiay.Them(new Giaychitiet()
+                            {
+                                Magiay = (int)cbbTenGiay.SelectedValue,
+                                Machatlieu = (int)cbbTenChatLieu.SelectedValue,
+                                Mamausac = (int)cbbTenMauSac.SelectedValue,
+                                Makichco = (int)cbbTenKichCo.SelectedValue,
+                                Mathuonghieu = (int)cbbTenThuongHieu.SelectedValue,
+                                Makieudang = (int)cbbTenKieuDang.SelectedValue,
+                                Soluongcon = int.Parse(txtSoLuong.Text),
+                                Ngaytao = dateTime,
+                                Nguoitao = LoginManager.Instance.IdTaiKhoan,
+                                Nguoisua = LoginManager.Instance.IdTaiKhoan,
+                                Gia = double.Parse(txtGia.Text),
+                                Mota = txtMoTa.Text,
+                                Trangthai = true
+                            });
+                        }
+                        else
+                        {
+                            MessageBox.Show("Đã tồn tại sản phẩm có các thuộc tính này");
+                            result = false;
+                        }
 
                         if (result)
                         {
@@ -272,6 +288,7 @@ namespace BanGiay.Form.US
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
+            DateTime dateTime = DateTime.Now;
             CheckTextbox();
             if (checkedTexbox)
             {

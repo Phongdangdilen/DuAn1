@@ -110,9 +110,9 @@ namespace BanGiay.Form.US
             dgvSP.Columns[7].Name = "Số lượng";
             dgvSP.Columns[8].Name = "Giá";
             dgvSP.Rows.Clear();
-            if (txtSearch ==null && Searchtype == null)
+            if (txtSearch == null && Searchtype == null)
             {
-            _lstGiay_ChiTietGiay = _Ser_Giay_ChiTietGiay.GetAll("true", "Trạng thái Giày");
+                _lstGiay_ChiTietGiay = _Ser_Giay_ChiTietGiay.GetAll("true", "Trạng thái Giày");
             }
             else
             {
@@ -341,6 +341,7 @@ namespace BanGiay.Form.US
                 objHoaDon_KhachHang.Makhachhang = int.Parse(txtMaKhachhang.Text);
                 _Ser_HoaDon.Sua(int.Parse(txtMaHoaDon.Text), objHoaDon_KhachHang);
                 LoadGridHD(null, null);
+                chbox_Dung_DiemKH.Checked = false;
             }
         }
         public void LoadKhachHang(int? id)
@@ -546,9 +547,16 @@ namespace BanGiay.Form.US
         }
         private void txtSoTienNhan_TextChanged(object sender, EventArgs e)
         {
+            LoadSoTienNhan();
+            cboxDungDiemKH_CheckedChanged(this, EventArgs.Empty);
+        }
+        private void LoadSoTienNhan()
+        {
             if (txtSoTienNhan.Text == "")
             {
                 txtGhiChu.Text = "";
+                txtSoTienThieu.Text = txtTongTien.Text;
+                txtSoTienThua.Text = "0";
             }
             if (double.TryParse(txtSoTienNhan.Text, out double soTienNhan))
             {
@@ -564,6 +572,7 @@ namespace BanGiay.Form.US
         }
         private void cboxDungDiemKH_CheckedChanged(object sender, EventArgs e)
         {
+            LoadTien_ThanhToan();
             var Obj = _Ser_KhachHang.GetAllKhachhang(null).FirstOrDefault(x => x.Makhachhang == int.Parse(txtMaKhachhang.Text));
             var objUuDai = _ser_UuDai.GetUudai_InTime();
 
@@ -576,13 +585,14 @@ namespace BanGiay.Form.US
 
             if (chbox_Dung_DiemKH.Checked)
             {
-
                 txtTongTien.Text = (tongTienSP - giamGia - giamGiaDiemKH).ToString();
+                LoadSoTienNhan();
                 txtGhiChu.Text += $" - Đã dùng {Obj.Diemkhachhang} điểm = {Obj.Diemkhachhang * 1000} VNĐ";
             }
             else
             {
                 txtTongTien.Text = (tongTienSP - giamGia).ToString();
+                LoadSoTienNhan();
                 string diemDungTruocDo = $" - Đã dùng {Obj.Diemkhachhang} điểm = {Obj.Diemkhachhang * 1000} VNĐ";
                 txtGhiChu.Text = txtGhiChu.Text.Replace(diemDungTruocDo, "");
             }

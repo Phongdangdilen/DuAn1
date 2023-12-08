@@ -65,6 +65,7 @@
             btnKhoa_MoKhoa = new Button();
             btnSua = new Button();
             btnThem = new Button();
+            ptbThemThuongHieu = new PictureBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbKichCo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ptbMauSac).BeginInit();
@@ -76,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvSP).BeginInit();
             panel2.SuspendLayout();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ptbThemThuongHieu).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -83,6 +85,7 @@
             groupBox1.Controls.Add(ptbKichCo);
             groupBox1.Controls.Add(ptbMauSac);
             groupBox1.Controls.Add(ptbChatLieu);
+            groupBox1.Controls.Add(ptbThemThuongHieu);
             groupBox1.Controls.Add(ptbKieuDang);
             groupBox1.Controls.Add(ptbGiay);
             groupBox1.Controls.Add(cbbTenChatLieu);
@@ -507,6 +510,18 @@
             btnThem.UseVisualStyleBackColor = false;
             btnThem.Click += btnThem_Click;
             // 
+            // ptbThemThuongHieu
+            // 
+            ptbThemThuongHieu.Cursor = Cursors.Hand;
+            ptbThemThuongHieu.Image = Properties.Resources.add;
+            ptbThemThuongHieu.Location = new Point(225, 401);
+            ptbThemThuongHieu.Name = "ptbThemThuongHieu";
+            ptbThemThuongHieu.Size = new Size(28, 24);
+            ptbThemThuongHieu.SizeMode = PictureBoxSizeMode.Zoom;
+            ptbThemThuongHieu.TabIndex = 45;
+            ptbThemThuongHieu.TabStop = false;
+            ptbThemThuongHieu.Click += ptbThuongHieu_Click;
+            // 
             // Frm_US_SanPham
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -529,6 +544,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ptbThemThuongHieu).EndInit();
             ResumeLayout(false);
         }
 
@@ -571,5 +587,6 @@
         private Button btnKhoa_MoKhoa;
         private Button btnSua;
         private Button btnThem;
+        private PictureBox ptbThemThuongHieu;
     }
 }

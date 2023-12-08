@@ -109,6 +109,7 @@ namespace PRL.Frm_Main
             idClicked = int.Parse(dgv_Objects.Rows[index].Cells[1].Value.ToString());
             var khach = _Ser_KhachHang.GetAllKhachhang(null).FirstOrDefault(x => x.Makhachhang == idClicked);
             txtTen.Text = khach.Tenkhachhang;
+            txtSdt.Text = khach.Sdt;
         }
 
         private void TimKhachhang_Frm_Load(object sender, EventArgs e)

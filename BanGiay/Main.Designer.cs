@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            txtTenTaiKhoan = new Label();
+            label1 = new Label();
             btnDangXuat = new Button();
             btnGiaoCa = new Button();
             btnLuong = new Button();
@@ -41,13 +43,16 @@
             btnBanHang = new Button();
             ptbLOGO = new PictureBox();
             panel_US = new Panel();
+            panel2 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbLOGO).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(54, 71, 92);
+            panel1.Controls.Add(panel2);
             panel1.Controls.Add(btnDangXuat);
             panel1.Controls.Add(btnGiaoCa);
             panel1.Controls.Add(btnLuong);
@@ -64,6 +69,27 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(220, 733);
             panel1.TabIndex = 0;
+            // 
+            // txtTenTaiKhoan
+            // 
+            txtTenTaiKhoan.AutoSize = true;
+            txtTenTaiKhoan.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            txtTenTaiKhoan.ForeColor = Color.White;
+            txtTenTaiKhoan.Location = new Point(74, 14);
+            txtTenTaiKhoan.Name = "txtTenTaiKhoan";
+            txtTenTaiKhoan.Size = new Size(14, 15);
+            txtTenTaiKhoan.TabIndex = 13;
+            txtTenTaiKhoan.Text = "#";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = Color.Gainsboro;
+            label1.Location = new Point(12, 14);
+            label1.Name = "label1";
+            label1.Size = new Size(56, 15);
+            label1.TabIndex = 12;
+            label1.Text = "Xin chào:";
             // 
             // btnDangXuat
             // 
@@ -251,6 +277,16 @@
             panel_US.Size = new Size(1094, 733);
             panel_US.TabIndex = 1;
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(txtTenTaiKhoan);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(0, 634);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(220, 50);
+            panel2.TabIndex = 14;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -266,6 +302,8 @@
             Load += Main_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ptbLOGO).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -284,5 +322,8 @@
         private PictureBox ptbLOGO;
         private Panel panel_US;
         private Button btnDangXuat;
+        private Label txtTenTaiKhoan;
+        private Label label1;
+        private Panel panel2;
     }
 }

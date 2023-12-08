@@ -68,7 +68,7 @@ namespace PRL
                     item.Tenchatlieu,
                     item.Mota,
                     item.Mataikhoan,
-                    item.Trangthai
+                    (item.Trangthai == true ? "Đang hoạt động" : "Ngừng hoạt động")
                     );
             }
 
@@ -79,19 +79,33 @@ namespace PRL
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
+            bool result;
             if (CheckTextbox())
             {
                 var confirmResult = MessageBox.Show("Xác nhận 'thêm' chất liệu không?", "Xác nhận", MessageBoxButtons.OKCancel);
 
                 if (confirmResult == DialogResult.OK)
-                {
-                    var result = _Ser.Them(new Chatlieu()
+                                {
+                    var existingProduct = _Ser.GetAll(null, null)
+                                                .FirstOrDefault(p =>
+                                                    p.Tenchatlieu == txtTen.Text &&
+                                                    p.Mota == txtMoTa.Text);
+                    if(existingProduct != null)
                     {
-                        Tenchatlieu = txtTen.Text,
-                        Mota = txtMoTa.Text,
-                        Mataikhoan = LoginManager.Instance.IdTaiKhoan,
-                        Trangthai = true
-                    });
+                        MessageBox.Show("Chất liệu đã tồn tại!");
+                        result = false;
+                    }
+                    else
+                    {
+                        result = _Ser.Them(new Chatlieu()
+                        {
+                            Tenchatlieu = txtTen.Text,
+                            Mota = txtMoTa.Text,
+                            Mataikhoan = LoginManager.Instance.IdTaiKhoan,
+                            Trangthai = true
+                        });
+
+                    }
 
                     if (result)
                     {
