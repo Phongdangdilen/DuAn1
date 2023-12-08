@@ -65,7 +65,7 @@ namespace DAL.Repositories
                 var Obj = _db.Hoadonchitiets.FirstOrDefault(a => a.Mahoadonchitiet == id);
                 if (Obj == null) { return false; }
 
-                Obj.Mahoadon = hoadonchitiet.Magiaychitiet;
+                Obj.Magiaychitiet = hoadonchitiet.Magiaychitiet;
                 Obj.Mahoadon = hoadonchitiet.Mahoadon;
                 Obj.Soluongmua = hoadonchitiet.Soluongmua;
                 Obj.Gia = hoadonchitiet.Gia;
@@ -75,11 +75,17 @@ namespace DAL.Repositories
                 return true;
 
             }
-            catch { return false; }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
+                return false;
 
+
+            }
         }
 
-        public bool Them(Hoadonchitiet hoadonchitiet)
+            public bool Them(Hoadonchitiet hoadonchitiet)
         {
             try
             {
