@@ -217,7 +217,11 @@ namespace BanGiay.Form.US
             var relust = MessageBox.Show("Xác nhận muốm kết thúc", "Xác nhận", MessageBoxButtons.YesNo);
             if (relust == DialogResult.Yes)
             {
-                MessageBox.Show(_service.Trangthai(uudai));
+                var obj = _service.GetUudais(null).FirstOrDefault(x => x.Mauudai == _idWhenhClick);
+                // MessageBox.Show(_service.Trangthai(uudai));
+                obj.Soluong = 0;
+                obj.Trangthai = 0;
+                _service.Updateuudai(obj);
             }
             CapNhatTrangThaiUuDai();
             loadGird(null);
@@ -233,33 +237,49 @@ namespace BanGiay.Form.US
 
             return obj != null;
         }
-        //private void UpdateTrangThai()
-        //{
-        //    DateTime thoiGianHienTai = DateTime.Now;
-        //    var _lst_UuDai = _service.GetUudais(null);
-        //    foreach (var item in _lst_UuDai)
-        //    {
-        //        if (item.Ngaybatdau > thoiGianHienTai && item.Ngayketthuc > thoiGianHienTai)
-        //        {
-        //            item.Trangthai = 1;
-        //            _service.Updateuudai(item);
-        //        }
-        //        else if (item.Ngaybatdau < thoiGianHienTai && item.Ngayketthuc < thoiGianHienTai)
-        //        {
-        //            item.Trangthai = 0;
-        //            _service.Updateuudai(item);
-        //        }
-        //        else if (item.Ngaybatdau < thoiGianHienTai && item.Ngayketthuc > thoiGianHienTai)
-        //        {
-        //            item.Trangthai = 2;
-        //            _service.Updateuudai(item);
-        //        }
-        //    }
-        //}
+        private void UpdateTrangThai()
+        {
+            DateTime thoiGianHienTai = DateTime.Now;
+            var _lst_UuDai = _service.GetUudais(null);
+            foreach (var item in _lst_UuDai)
+            {
+                if (item.Ngaybatdau > thoiGianHienTai && item.Ngayketthuc > thoiGianHienTai)
+                {
+                    if (item.Soluong == 0)
+                    {
+                        item.Trangthai = 0;
+                    }
+                    else
+                    {
+                        item.Trangthai = 1;
+
+                    }
+                    _service.Updateuudai(item);
+                }
+                else if (item.Ngaybatdau < thoiGianHienTai && item.Ngayketthuc < thoiGianHienTai)
+                {
+                    item.Trangthai = 0;
+                    _service.Updateuudai(item);
+                }
+                else if (item.Ngaybatdau < thoiGianHienTai && item.Ngayketthuc > thoiGianHienTai)
+                {
+                    if (item.Soluong == 0)
+                    {
+                        item.Trangthai = 0;
+                    }
+                    else
+                    {
+
+                        item.Trangthai = 2;
+                    }
+                    _service.Updateuudai(item);
+                }
+            }
+        }
 
         private void Frm_US_UuDai_Load(object sender, EventArgs e)
         {
-            //UpdateTrangThai();
+            UpdateTrangThai();
         }
     }
 }
