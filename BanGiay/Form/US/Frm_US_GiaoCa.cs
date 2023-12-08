@@ -160,6 +160,15 @@ namespace BanGiay.Form.US
             DateTime ngaygiao = dateGiaoca.Value;
             TimeSpan thoiGianden = dateDen.Value.TimeOfDay;
             TimeSpan thoiGianve = dateVe.Value.TimeOfDay;
+            int selectedMaTaiKhoan = _list2[cmbnhanvien.SelectedIndex];
+            if (_service.giaocanhanviens(null).Any(x => x.Mataikhoan == selectedMaTaiKhoan &&
+                                                        x.Ngaygiaoca == ngaygiao &&
+                                                ((thoiGianden >= x.Thoigianden && thoiGianden <= x.Thoigianve) ||
+                                                 (thoiGianve >= x.Thoigianden && thoiGianve <= x.Thoigianve))))
+            {
+                MessageBox.Show("Thời gian của ca này đã tồn tại một ca khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             Giaocanhanvien GC = new Giaocanhanvien();
             GC.Magiaoca = _list1[cmbTenca.SelectedIndex];
             GC.Mataikhoan = _list2[cmbnhanvien.SelectedIndex];
