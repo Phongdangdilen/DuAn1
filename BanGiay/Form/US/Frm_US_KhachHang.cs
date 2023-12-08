@@ -197,10 +197,16 @@ namespace BanGiay.Form.US
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                var result = saveFileDialog.ShowDialog();
+                if (result == DialogResult.OK)
                 {
                     FileInfo fileInfo = new FileInfo(saveFileDialog.FileName);
                     excelPackage.SaveAs(fileInfo);
+                    MessageBox.Show("Dữ liệu đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Xuất file thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             MessageBox.Show("Dữ liệu đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

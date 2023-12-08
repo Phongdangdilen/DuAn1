@@ -31,8 +31,6 @@
             groupBox1 = new GroupBox();
             panel4 = new Panel();
             btnSua = new Button();
-            panel6 = new Panel();
-            btnHuyca = new Button();
             panel5 = new Panel();
             btnThem_BangCa = new Button();
             cmbnhanvien = new ComboBox();
@@ -112,8 +110,6 @@
             // panel4
             // 
             panel4.Controls.Add(btnSua);
-            panel4.Controls.Add(panel6);
-            panel4.Controls.Add(btnHuyca);
             panel4.Controls.Add(panel5);
             panel4.Controls.Add(btnThem_BangCa);
             panel4.Dock = DockStyle.Bottom;
@@ -131,45 +127,20 @@
             btnSua.FlatAppearance.MouseDownBackColor = Color.FromArgb(69, 97, 120);
             btnSua.FlatStyle = FlatStyle.Flat;
             btnSua.ForeColor = Color.White;
-            btnSua.Location = new Point(107, 0);
+            btnSua.Location = new Point(190, 0);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(73, 52);
+            btnSua.Size = new Size(93, 52);
             btnSua.TabIndex = 7;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = false;
             btnSua.Click += btnSua_Click;
             // 
-            // panel6
-            // 
-            panel6.Dock = DockStyle.Right;
-            panel6.Location = new Point(180, 0);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(28, 52);
-            panel6.TabIndex = 6;
-            // 
-            // btnHuyca
-            // 
-            btnHuyca.BackColor = Color.FromArgb(64, 79, 105);
-            btnHuyca.Cursor = Cursors.Hand;
-            btnHuyca.Dock = DockStyle.Right;
-            btnHuyca.FlatAppearance.BorderSize = 0;
-            btnHuyca.FlatAppearance.MouseDownBackColor = Color.FromArgb(69, 97, 120);
-            btnHuyca.FlatStyle = FlatStyle.Flat;
-            btnHuyca.ForeColor = Color.White;
-            btnHuyca.Location = new Point(208, 0);
-            btnHuyca.Name = "btnHuyca";
-            btnHuyca.Size = new Size(75, 52);
-            btnHuyca.TabIndex = 5;
-            btnHuyca.Text = "Hủy ca";
-            btnHuyca.UseVisualStyleBackColor = false;
-            btnHuyca.Click += btnHuy_Click;
-            // 
             // panel5
             // 
             panel5.Dock = DockStyle.Left;
-            panel5.Location = new Point(75, 0);
+            panel5.Location = new Point(107, 0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(32, 52);
+            panel5.Size = new Size(83, 52);
             panel5.TabIndex = 4;
             // 
             // btnThem_BangCa
@@ -183,7 +154,7 @@
             btnThem_BangCa.ForeColor = Color.White;
             btnThem_BangCa.Location = new Point(0, 0);
             btnThem_BangCa.Name = "btnThem_BangCa";
-            btnThem_BangCa.Size = new Size(75, 52);
+            btnThem_BangCa.Size = new Size(107, 52);
             btnThem_BangCa.TabIndex = 0;
             btnThem_BangCa.Text = "Thêm";
             btnThem_BangCa.UseVisualStyleBackColor = false;
@@ -594,8 +565,6 @@
         private Label label2;
         private Panel panel4;
         private Button btnSua;
-        private Panel panel6;
-        private Button btnHuyca;
         private Panel panel5;
         private Button btnThem_BangCa;
     }
