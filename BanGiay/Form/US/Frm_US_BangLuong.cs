@@ -50,7 +50,7 @@ namespace BanGiay.Form.US
             Bangluong bangluong = new Bangluong();
 
             if (int.TryParse(txtManv.Text, out int maTaiKhoan) &&
-                int.TryParse(txtThanglam.Text, out int thangLam) &&
+                DateTime.TryParse(txtThanglam.Text, out DateTime thangLam) &&
                 float.TryParse(txtLCB.Text, out float luongcoban) &&
                 float.TryParse(txtTienthuong.Text, out float tienThuong) &&
                 float.TryParse(txtTienkhautru.Text, out float tienKhauTru))
@@ -105,7 +105,7 @@ namespace BanGiay.Form.US
             Bangluong bangluong = new Bangluong();
 
             if (int.TryParse(txtManv.Text, out int maTaiKhoan) &&
-                int.TryParse(txtThanglam.Text, out int thangLam) &&
+                DateTime.TryParse(txtThanglam.Text, out DateTime thangLam) &&
                 float.TryParse(txtLCB.Text, out float luongcoban) &&
                 float.TryParse(txtTienthuong.Text, out float tienThuong) &&
                 float.TryParse(txtTienkhautru.Text, out float tienKhauTru))
