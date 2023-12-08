@@ -91,5 +91,29 @@ namespace BUS.Services
                 return "Có lỗi xảy ra";
             }
         }
+        public bool Sua(Khachhang khachhang)
+        {
+            var cloer = _repos.GetAllKhachhang(null).FirstOrDefault(x => x.Makhachhang == khachhang.Makhachhang);
+            try
+            {
+                if (khachhang == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    cloer.Tenkhachhang = khachhang.Tenkhachhang;
+                    cloer.Sdt = khachhang.Sdt;
+                    cloer.Diemkhachhang = khachhang.Diemkhachhang;
+                    cloer.Trangthai = khachhang.Trangthai;
+                    _repos.UpdateKhachHang(cloer);
+                    return true;
+                }
+            }catch(Exception ex)
+            {
+                return false;
+            }
+
+        }
     }
 }

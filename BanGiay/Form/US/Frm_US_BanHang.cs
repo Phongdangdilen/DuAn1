@@ -734,7 +734,7 @@ namespace BanGiay.Form.US
                                 soluongMuaHang += item.Hoadonchitiet.Soluongmua;
                             }
                             objKhachhang.Diemkhachhang = objKhachhang.Diemkhachhang + soluongMuaHang;
-                            _Ser_KhachHang.UpdateKhachHang(objKhachhang);
+                            _Ser_KhachHang.Sua(objKhachhang);
 
                             MessageBox.Show("Đã 'thanh toán' thành công hóa đơn");
 
