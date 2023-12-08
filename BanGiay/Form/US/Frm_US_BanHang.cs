@@ -876,7 +876,7 @@ namespace BanGiay.Form.US
             txtMaNhanVien.Text = "N/A";
             txtMaHoaDon.Text = "N/A";
             txtGiamGia.Text = "";
-            cbbHinhThucThanhToan.SelectedItem = 0;
+            cbbHinhThucThanhToan.SelectedIndex = 0;
             txtDiem_KH.Text = "";
             chbox_Dung_DiemKH.Checked = false;
             txtSoTienNhan.Text = "";
