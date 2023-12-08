@@ -28,117 +28,131 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            txtTen = new TextBox();
-            txtMota = new RichTextBox();
-            dataGridView1 = new DataGridView();
-            btnThem = new Button();
-            btnSua = new Button();
-            btnLammoi = new Button();
             txtTimkiem = new TextBox();
             label3 = new Label();
+            btnLammoi = new Button();
+            btnSua = new Button();
+            btnThem = new Button();
+            dataGridView1 = new DataGridView();
+            txtMota = new RichTextBox();
+            txtTen = new TextBox();
+            label2 = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(43, 57);
-            label1.Name = "label1";
-            label1.Size = new Size(79, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Tên hình thức";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(44, 94);
-            label2.Name = "label2";
-            label2.Size = new Size(38, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Mô tả";
-            // 
-            // txtTen
-            // 
-            txtTen.Location = new Point(133, 57);
-            txtTen.Margin = new Padding(3, 2, 3, 2);
-            txtTen.Name = "txtTen";
-            txtTen.Size = new Size(252, 23);
-            txtTen.TabIndex = 2;
-            // 
-            // txtMota
-            // 
-            txtMota.Location = new Point(133, 94);
-            txtMota.Margin = new Padding(3, 2, 3, 2);
-            txtMota.Name = "txtMota";
-            txtMota.Size = new Size(252, 74);
-            txtMota.TabIndex = 3;
-            txtMota.Text = "";
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(108, 180);
-            dataGridView1.Margin = new Padding(3, 2, 3, 2);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(504, 141);
-            dataGridView1.TabIndex = 4;
-            dataGridView1.CellClick += dataGridView1_CellClick;
-            // 
-            // btnThem
-            // 
-            btnThem.Location = new Point(437, 18);
-            btnThem.Margin = new Padding(3, 2, 3, 2);
-            btnThem.Name = "btnThem";
-            btnThem.Size = new Size(92, 33);
-            btnThem.TabIndex = 5;
-            btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = true;
-            btnThem.Click += btnThem_Click;
-            // 
-            // btnSua
-            // 
-            btnSua.Location = new Point(572, 18);
-            btnSua.Margin = new Padding(3, 2, 3, 2);
-            btnSua.Name = "btnSua";
-            btnSua.Size = new Size(92, 33);
-            btnSua.TabIndex = 6;
-            btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = true;
-            btnSua.Click += btnSua_Click;
-            // 
-            // btnLammoi
-            // 
-            btnLammoi.Location = new Point(502, 86);
-            btnLammoi.Margin = new Padding(3, 2, 3, 2);
-            btnLammoi.Name = "btnLammoi";
-            btnLammoi.Size = new Size(92, 33);
-            btnLammoi.TabIndex = 8;
-            btnLammoi.Text = "Làm mới";
-            btnLammoi.UseVisualStyleBackColor = true;
-            btnLammoi.Click += btnLammoi_Click;
-            // 
             // txtTimkiem
             // 
-            txtTimkiem.Location = new Point(133, 25);
+            txtTimkiem.Location = new Point(188, 21);
             txtTimkiem.Margin = new Padding(3, 2, 3, 2);
+            txtTimkiem.Multiline = true;
             txtTimkiem.Name = "txtTimkiem";
-            txtTimkiem.Size = new Size(252, 23);
-            txtTimkiem.TabIndex = 10;
+            txtTimkiem.Size = new Size(252, 30);
+            txtTimkiem.TabIndex = 20;
             txtTimkiem.TextChanged += txtTimkiem_TextChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(43, 25);
+            label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(99, 23);
             label3.Name = "label3";
-            label3.Size = new Size(56, 15);
-            label3.TabIndex = 9;
+            label3.Size = new Size(57, 15);
+            label3.TabIndex = 19;
             label3.Text = "Tìm kiếm";
+            // 
+            // btnLammoi
+            // 
+            btnLammoi.BackColor = Color.CornflowerBlue;
+            btnLammoi.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnLammoi.ForeColor = SystemColors.Window;
+            btnLammoi.Location = new Point(510, 118);
+            btnLammoi.Margin = new Padding(3, 2, 3, 2);
+            btnLammoi.Name = "btnLammoi";
+            btnLammoi.Size = new Size(92, 33);
+            btnLammoi.TabIndex = 18;
+            btnLammoi.Text = "Làm mới";
+            btnLammoi.UseVisualStyleBackColor = false;
+            btnLammoi.Click += btnLammoi_Click;
+            // 
+            // btnSua
+            // 
+            btnSua.BackColor = Color.MediumPurple;
+            btnSua.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSua.ForeColor = SystemColors.Window;
+            btnSua.Location = new Point(510, 72);
+            btnSua.Margin = new Padding(3, 2, 3, 2);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(92, 33);
+            btnSua.TabIndex = 17;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = false;
+            btnSua.Click += btnSua_Click;
+            // 
+            // btnThem
+            // 
+            btnThem.BackColor = Color.LimeGreen;
+            btnThem.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnThem.ForeColor = SystemColors.Window;
+            btnThem.Location = new Point(510, 21);
+            btnThem.Margin = new Padding(3, 2, 3, 2);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(92, 33);
+            btnThem.TabIndex = 16;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = false;
+            btnThem.Click += btnThem_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.BackgroundColor = SystemColors.Window;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(98, 177);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(504, 141);
+            dataGridView1.TabIndex = 15;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // txtMota
+            // 
+            txtMota.Location = new Point(188, 90);
+            txtMota.Margin = new Padding(3, 2, 3, 2);
+            txtMota.Name = "txtMota";
+            txtMota.Size = new Size(252, 74);
+            txtMota.TabIndex = 14;
+            txtMota.Text = "";
+            // 
+            // txtTen
+            // 
+            txtTen.Location = new Point(188, 53);
+            txtTen.Margin = new Padding(3, 2, 3, 2);
+            txtTen.Multiline = true;
+            txtTen.Name = "txtTen";
+            txtTen.Size = new Size(252, 30);
+            txtTen.TabIndex = 13;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(99, 90);
+            label2.Name = "label2";
+            label2.Size = new Size(38, 15);
+            label2.TabIndex = 12;
+            label2.Text = "Mô tả";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(98, 55);
+            label1.Name = "label1";
+            label1.Size = new Size(80, 15);
+            label1.TabIndex = 11;
+            label1.Text = "Tên hình thức";
             // 
             // HinhThucThanhToan
             // 
@@ -165,15 +179,15 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private TextBox txtTen;
-        private RichTextBox txtMota;
-        private DataGridView dataGridView1;
-        private Button btnThem;
-        private Button btnSua;
-        private Button btnLammoi;
         private TextBox txtTimkiem;
         private Label label3;
+        private Button btnLammoi;
+        private Button btnSua;
+        private Button btnThem;
+        private DataGridView dataGridView1;
+        private RichTextBox txtMota;
+        private TextBox txtTen;
+        private Label label2;
+        private Label label1;
     }
 }

@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -98,7 +99,7 @@ namespace BanGiay.Form.US
                 MessageBox.Show("Số điện thoại tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (Checkrong(txtSDT.Text, txtEmail.Text, txtTaikhoan.Text))
+            if (Checkrong(txtEmail.Text, txtTaikhoan.Text))
             {
                 Taikhoan taikhoan = new Taikhoan();
                 taikhoan.Username = txtTaikhoan.Text;
@@ -122,7 +123,7 @@ namespace BanGiay.Form.US
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (Checkrong(txtSDT.Text, txtEmail.Text, null))
+            if (Checkrong(txtEmail.Text, null))
             {
                 Taikhoan taikhoan = new Taikhoan();
                 taikhoan.Mataikhoan = _idWhenclick;
@@ -171,7 +172,7 @@ namespace BanGiay.Form.US
         {
             LoadGird(txtTimKiem.Text);
         }
-        public bool Checkrong(string soDienThoai, string email, string username)
+        public bool Checkrong(string email, string username)
         {
             if (string.IsNullOrEmpty(txtTaikhoan.Text)
                 || string.IsNullOrEmpty(txtMatkhau.Text)
@@ -183,7 +184,7 @@ namespace BanGiay.Form.US
                 MessageBox.Show("Vui lòng nhập đủ dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            else if (soDienThoai.Length != 10 && soDienThoai[0] != '0' && !soDienThoai.All(char.IsDigit) || !int.TryParse(soDienThoai, out _))
+            else if (!Regex.IsMatch(txtSDT.Text, @"^\d{10}$"))
             {
                 MessageBox.Show("Số điện thoại 0 hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

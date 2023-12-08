@@ -56,32 +56,36 @@
             groupXacNhan.Controls.Add(txtEmail);
             groupXacNhan.Controls.Add(label2);
             groupXacNhan.Controls.Add(label1);
-            groupXacNhan.Location = new Point(12, 12);
+            groupXacNhan.Location = new Point(11, 12);
             groupXacNhan.Name = "groupXacNhan";
             groupXacNhan.Size = new Size(363, 368);
-            groupXacNhan.TabIndex = 0;
+            groupXacNhan.TabIndex = 1;
             groupXacNhan.TabStop = false;
             // 
             // btnXacNhan_MaXacMinh
             // 
-            btnXacNhan_MaXacMinh.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnXacNhan_MaXacMinh.BackColor = Color.IndianRed;
+            btnXacNhan_MaXacMinh.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnXacNhan_MaXacMinh.ForeColor = SystemColors.Window;
             btnXacNhan_MaXacMinh.Location = new Point(219, 242);
             btnXacNhan_MaXacMinh.Name = "btnXacNhan_MaXacMinh";
             btnXacNhan_MaXacMinh.Size = new Size(120, 40);
             btnXacNhan_MaXacMinh.TabIndex = 3;
             btnXacNhan_MaXacMinh.Text = "Xác nhận";
-            btnXacNhan_MaXacMinh.UseVisualStyleBackColor = true;
+            btnXacNhan_MaXacMinh.UseVisualStyleBackColor = false;
             btnXacNhan_MaXacMinh.Click += btnXacNhan_MaXacMinh_Click;
             // 
             // btnGuiMa
             // 
-            btnGuiMa.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnGuiMa.BackColor = Color.LimeGreen;
+            btnGuiMa.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnGuiMa.ForeColor = SystemColors.Window;
             btnGuiMa.Location = new Point(219, 122);
             btnGuiMa.Name = "btnGuiMa";
             btnGuiMa.Size = new Size(120, 40);
             btnGuiMa.TabIndex = 1;
             btnGuiMa.Text = "Gửi mã";
-            btnGuiMa.UseVisualStyleBackColor = true;
+            btnGuiMa.UseVisualStyleBackColor = false;
             btnGuiMa.Click += btnGuiMa_Click;
             // 
             // txtMaXacMinh
@@ -112,6 +116,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(21, 64);
             label2.Name = "label2";
             label2.Size = new Size(116, 15);
@@ -136,22 +141,23 @@
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(txtMatKhauMoi_1);
-            groupBox2.Location = new Point(381, 12);
+            groupBox2.Location = new Point(380, 12);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(363, 368);
-            groupBox2.TabIndex = 0;
+            groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             // 
             // btnXacNhan_DoiMatKhau
             // 
-            btnXacNhan_DoiMatKhau.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btnXacNhan_DoiMatKhau.ForeColor = Color.White;
+            btnXacNhan_DoiMatKhau.BackColor = Color.IndianRed;
+            btnXacNhan_DoiMatKhau.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnXacNhan_DoiMatKhau.ForeColor = SystemColors.Window;
             btnXacNhan_DoiMatKhau.Location = new Point(218, 196);
             btnXacNhan_DoiMatKhau.Name = "btnXacNhan_DoiMatKhau";
             btnXacNhan_DoiMatKhau.Size = new Size(120, 40);
             btnXacNhan_DoiMatKhau.TabIndex = 6;
             btnXacNhan_DoiMatKhau.Text = "Xác nhận";
-            btnXacNhan_DoiMatKhau.UseVisualStyleBackColor = true;
+            btnXacNhan_DoiMatKhau.UseVisualStyleBackColor = false;
             btnXacNhan_DoiMatKhau.Click += btnXacNhan_DoiMatKhau_Click;
             // 
             // txtMatKhauMoi_2
@@ -168,7 +174,6 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = Color.White;
             label4.Location = new Point(132, 19);
             label4.Name = "label4";
             label4.Size = new Size(128, 25);
@@ -178,7 +183,6 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.ForeColor = Color.White;
             label5.Location = new Point(20, 64);
             label5.Name = "label5";
             label5.Size = new Size(161, 15);
@@ -188,7 +192,6 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.ForeColor = Color.White;
             label6.Location = new Point(20, 138);
             label6.Name = "label6";
             label6.Size = new Size(151, 15);
@@ -210,8 +213,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(754, 392);
-            Controls.Add(groupBox2);
             Controls.Add(groupXacNhan);
+            Controls.Add(groupBox2);
             Name = "QuenMatKhau_Frm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quên Mật Khẩu";
@@ -227,14 +230,14 @@
         #endregion
 
         private GroupBox groupXacNhan;
+        private Button btnXacNhan_MaXacMinh;
+        private Button btnGuiMa;
         private TextBox txtMaXacMinh;
         private Label label3;
         private TextBox txtEmail;
         private Label label2;
         private Label label1;
         private GroupBox groupBox2;
-        private Button btnXacNhan_MaXacMinh;
-        private Button btnGuiMa;
         private Button btnXacNhan_DoiMatKhau;
         private TextBox txtMatKhauMoi_2;
         private Label label4;

@@ -31,12 +31,12 @@
             groupBox1 = new GroupBox();
             btnSua = new Button();
             btnThem = new Button();
-            label1 = new Label();
-            txtTen = new TextBox();
-            dgv_Objects = new DataGridView();
             btnTimKiem = new Button();
             cbbTimKiem = new ComboBox();
             txtTimKiem = new TextBox();
+            label1 = new Label();
+            txtTen = new TextBox();
+            dgv_Objects = new DataGridView();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_Objects).BeginInit();
             SuspendLayout();
@@ -48,69 +48,47 @@
             groupBox1.Location = new Point(14, 111);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(513, 92);
-            groupBox1.TabIndex = 66;
+            groupBox1.TabIndex = 73;
             groupBox1.TabStop = false;
             groupBox1.Text = "Chức năng";
             // 
             // btnSua
             // 
-            btnSua.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSua.Location = new Point(281, 15);
+            btnSua.BackColor = Color.MediumPurple;
+            btnSua.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSua.ForeColor = Color.White;
+            btnSua.Location = new Point(282, 36);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(165, 71);
+            btnSua.Size = new Size(108, 39);
             btnSua.TabIndex = 14;
             btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = true;
+            btnSua.UseVisualStyleBackColor = false;
             btnSua.Click += btnSua_Click;
             // 
             // btnThem
             // 
-            btnThem.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnThem.Location = new Point(66, 15);
+            btnThem.BackColor = Color.LimeGreen;
+            btnThem.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnThem.ForeColor = SystemColors.Window;
+            btnThem.Location = new Point(101, 36);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(165, 71);
+            btnThem.Size = new Size(108, 39);
             btnThem.TabIndex = 15;
             btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = true;
+            btnThem.UseVisualStyleBackColor = false;
             btnThem.Click += btnThem_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(14, 50);
-            label1.Name = "label1";
-            label1.Size = new Size(28, 15);
-            label1.TabIndex = 65;
-            label1.Text = "Tên:";
-            // 
-            // txtTen
-            // 
-            txtTen.Location = new Point(14, 72);
-            txtTen.Multiline = true;
-            txtTen.Name = "txtTen";
-            txtTen.Size = new Size(513, 33);
-            txtTen.TabIndex = 63;
-            // 
-            // dgv_Objects
-            // 
-            dgv_Objects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_Objects.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_Objects.Location = new Point(14, 209);
-            dgv_Objects.Name = "dgv_Objects";
-            dgv_Objects.RowTemplate.Height = 25;
-            dgv_Objects.Size = new Size(513, 194);
-            dgv_Objects.TabIndex = 61;
-            dgv_Objects.CellClick += dgv_Objects_CellClick;
             // 
             // btnTimKiem
             // 
-            btnTimKiem.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTimKiem.BackColor = Color.CornflowerBlue;
+            btnTimKiem.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTimKiem.ForeColor = SystemColors.Window;
             btnTimKiem.Location = new Point(424, 17);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(103, 30);
-            btnTimKiem.TabIndex = 69;
+            btnTimKiem.TabIndex = 76;
             btnTimKiem.Text = "Tìm kiếm";
-            btnTimKiem.UseVisualStyleBackColor = true;
+            btnTimKiem.UseVisualStyleBackColor = false;
             btnTimKiem.Click += btnTimKiem_Click;
             // 
             // cbbTimKiem
@@ -120,7 +98,7 @@
             cbbTimKiem.Location = new Point(266, 19);
             cbbTimKiem.Name = "cbbTimKiem";
             cbbTimKiem.Size = new Size(150, 23);
-            cbbTimKiem.TabIndex = 68;
+            cbbTimKiem.TabIndex = 75;
             // 
             // txtTimKiem
             // 
@@ -130,17 +108,47 @@
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.PlaceholderText = "Tìm kiếm...";
             txtTimKiem.Size = new Size(246, 30);
-            txtTimKiem.TabIndex = 67;
+            txtTimKiem.TabIndex = 74;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(14, 50);
+            label1.Name = "label1";
+            label1.Size = new Size(29, 15);
+            label1.TabIndex = 72;
+            label1.Text = "Tên:";
+            // 
+            // txtTen
+            // 
+            txtTen.Location = new Point(14, 72);
+            txtTen.Multiline = true;
+            txtTen.Name = "txtTen";
+            txtTen.Size = new Size(513, 33);
+            txtTen.TabIndex = 71;
+            // 
+            // dgv_Objects
+            // 
+            dgv_Objects.BackgroundColor = Color.White;
+            dgv_Objects.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_Objects.Location = new Point(14, 209);
+            dgv_Objects.Name = "dgv_Objects";
+            dgv_Objects.RowHeadersWidth = 51;
+            dgv_Objects.RowTemplate.Height = 25;
+            dgv_Objects.Size = new Size(513, 194);
+            dgv_Objects.TabIndex = 70;
+            dgv_Objects.CellClick += dgv_Objects_CellClick;
             // 
             // Giay_Frm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(541, 420);
+            Controls.Add(groupBox1);
             Controls.Add(btnTimKiem);
             Controls.Add(cbbTimKiem);
             Controls.Add(txtTimKiem);
-            Controls.Add(groupBox1);
             Controls.Add(label1);
             Controls.Add(txtTen);
             Controls.Add(dgv_Objects);
@@ -154,14 +162,15 @@
         }
 
         #endregion
+
         private GroupBox groupBox1;
         private Button btnSua;
         private Button btnThem;
-        private Label label1;
-        private TextBox txtTen;
-        private DataGridView dgv_Objects;
         private Button btnTimKiem;
         private ComboBox cbbTimKiem;
         private TextBox txtTimKiem;
+        private Label label1;
+        private TextBox txtTen;
+        private DataGridView dgv_Objects;
     }
 }

@@ -28,40 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            txtSoLuong = new TextBox();
             btnSoLuong = new Button();
+            txtSoLuong = new TextBox();
+            label1 = new Label();
             SuspendLayout();
+            // 
+            // btnSoLuong
+            // 
+            btnSoLuong.BackColor = Color.IndianRed;
+            btnSoLuong.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSoLuong.ForeColor = SystemColors.Window;
+            btnSoLuong.Location = new Point(119, 60);
+            btnSoLuong.Name = "btnSoLuong";
+            btnSoLuong.Size = new Size(79, 30);
+            btnSoLuong.TabIndex = 5;
+            btnSoLuong.Text = "Xác nhận";
+            btnSoLuong.UseVisualStyleBackColor = false;
+            btnSoLuong.Click += btnSoLuong_Click;
+            // 
+            // txtSoLuong
+            // 
+            txtSoLuong.Location = new Point(119, 19);
+            txtSoLuong.Multiline = true;
+            txtSoLuong.Name = "txtSoLuong";
+            txtSoLuong.Size = new Size(124, 23);
+            txtSoLuong.TabIndex = 4;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(33, 26);
+            label1.Location = new Point(39, 20);
             label1.Name = "label1";
             label1.Size = new Size(74, 20);
-            label1.TabIndex = 0;
+            label1.TabIndex = 3;
             label1.Text = "Số lượng:";
-            // 
-            // txtSoLuong
-            // 
-            txtSoLuong.Location = new Point(113, 25);
-            txtSoLuong.Multiline = true;
-            txtSoLuong.Name = "txtSoLuong";
-            txtSoLuong.Size = new Size(124, 23);
-            txtSoLuong.TabIndex = 1;
-            txtSoLuong.Enter += txtSoLuong_Enter;
-            // 
-            // btnSoLuong
-            // 
-            btnSoLuong.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSoLuong.Location = new Point(113, 66);
-            btnSoLuong.Name = "btnSoLuong";
-            btnSoLuong.Size = new Size(79, 30);
-            btnSoLuong.TabIndex = 2;
-            btnSoLuong.Text = "Xác nhận";
-            btnSoLuong.UseVisualStyleBackColor = true;
-            btnSoLuong.Click += btnSoLuong_Click;
             // 
             // SoLuongMua_Frm
             // 
@@ -81,8 +82,8 @@
 
         #endregion
 
-        private Label label1;
-        private TextBox txtSoLuong;
         private Button btnSoLuong;
+        private TextBox txtSoLuong;
+        private Label label1;
     }
 }

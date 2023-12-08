@@ -112,7 +112,7 @@ namespace PRL
                     }
                     else
                     {
-                         result = _Ser.Them(new Thuonghieu()
+                        result = _Ser.Them(new Thuonghieu()
                         {
                             Tenthuonghieu = txtTen.Text,
                             Email = txtEmail.Text,

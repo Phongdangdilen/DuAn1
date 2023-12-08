@@ -378,6 +378,7 @@
             dgvHienThi.RowTemplate.Height = 25;
             dgvHienThi.Size = new Size(813, 672);
             dgvHienThi.TabIndex = 1;
+            dgvHienThi.CellClick += dgvHienThi_CellClick;
             // 
             // panel2
             // 

@@ -81,7 +81,6 @@ namespace BUS.Services
                 {
                     cloer.Tenkhachhang = khachhang.Tenkhachhang;
                     cloer.Sdt = khachhang.Sdt;
-                    cloer.Diemkhachhang = khachhang.Diemkhachhang;
                     cloer.Trangthai = khachhang.Trangthai;
                     _repos.UpdateKhachHang(cloer);
                     return "Sửa thành công";

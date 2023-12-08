@@ -149,6 +149,7 @@
             // txtDiemKH
             // 
             txtDiemKH.BorderStyle = BorderStyle.FixedSingle;
+            txtDiemKH.Enabled = false;
             txtDiemKH.Location = new Point(395, 75);
             txtDiemKH.Name = "txtDiemKH";
             txtDiemKH.Size = new Size(225, 23);

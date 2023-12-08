@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,7 +18,8 @@ namespace BanGiay.Form.US
     {
         public Frm_US_KhachHang()
         {
-            InitializeComponent(); LoadGird(null);
+            InitializeComponent();
+            LoadGird(null);
         }
         private KhachHangService _service = new KhachHangService();
         int _idWhenClick;
@@ -106,10 +108,12 @@ namespace BanGiay.Form.US
         {
             if (checkdulieu(txtSDT.Text))
             {
+
                 Khachhang khachhang = new Khachhang();
                 khachhang.Makhachhang = _idWhenClick;
                 khachhang.Tenkhachhang = txtHoVaTen.Text;
                 khachhang.Sdt = txtSDT.Text;
+                // khachhang.Diemkhachhang = int.Parse(txtDiemKH.Text);
                 var relust = MessageBox.Show("Xác nhận muốm sửa", "Xác nhận", MessageBoxButtons.YesNo);
                 if (relust == DialogResult.Yes)
                 {
@@ -117,6 +121,7 @@ namespace BanGiay.Form.US
                 }
                 LoadGird(null);
             }
+
         }
 
         private void txtTimkiem_TextChanged(object sender, EventArgs e)
@@ -144,7 +149,7 @@ namespace BanGiay.Form.US
                 MessageBox.Show("Vui lòng nhập đủ dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            else if (sodienthoai.Length != 10 && sodienthoai[0] != '0' && !sodienthoai.All(char.IsDigit) || !int.TryParse(sodienthoai, out _))
+            else if (!Regex.IsMatch(txtSDT.Text, @"^\d{10}$"))
             {
                 MessageBox.Show("Số điện thoại 0 hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -201,8 +206,5 @@ namespace BanGiay.Form.US
             MessageBox.Show("Dữ liệu đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
-
-
-
     }
 }

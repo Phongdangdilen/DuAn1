@@ -172,6 +172,7 @@ namespace BanGiay.Form.US
             if (thoiGianve <= thoiGianden)
             {
                 MessageBox.Show("Thời gian về phải lớn hơn thời gian đến.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             var relust = MessageBox.Show("Xác nhận muốm thêm", "Xác nhận", MessageBoxButtons.YesNo);
             if (relust == DialogResult.Yes)
@@ -202,6 +203,11 @@ namespace BanGiay.Form.US
             GC.Sanphamdagiao = txtSanpham.Text;
             GC.Tiendagiao = float.Parse(txtTienbangiao.Text);
             GC.Ghichu = txtGhichu.Text;
+            if (thoiGianve <= thoiGianden)
+            {
+                MessageBox.Show("Thời gian về phải lớn hơn thời gian đến.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var relust = MessageBox.Show("Xác nhận muốm sửa", "Xác nhận", MessageBoxButtons.YesNo);
             if (relust == DialogResult.Yes)
             {

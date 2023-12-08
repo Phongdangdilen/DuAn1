@@ -193,7 +193,7 @@ namespace BanGiay.Form.US
                     item.tenMauSac,
                     item.tenKichCo,
                     item.tenThuongHieu,
-                    item.tenThuongHieu,
+                    item.tenKieuDang,
                     item.giaychitiet.Ngaytao,
                     item.tenNguoiTao,
                     item.giaychitiet.Ngaysua,

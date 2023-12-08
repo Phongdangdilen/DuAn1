@@ -33,11 +33,11 @@
             btnThem = new Button();
             btnTimKiem = new Button();
             txtTimKiem = new TextBox();
+            label2 = new Label();
             label1 = new Label();
+            txtSdt = new TextBox();
             txtTen = new TextBox();
             dgv_Objects = new DataGridView();
-            txtSdt = new TextBox();
-            label2 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_Objects).BeginInit();
             SuspendLayout();
@@ -46,100 +46,109 @@
             // 
             groupBox1.Controls.Add(btnChon);
             groupBox1.Controls.Add(btnThem);
-            groupBox1.Location = new Point(12, 106);
+            groupBox1.Location = new Point(14, 105);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(513, 92);
-            groupBox1.TabIndex = 73;
+            groupBox1.TabIndex = 82;
             groupBox1.TabStop = false;
             groupBox1.Text = "Chức năng";
             // 
             // btnChon
             // 
-            btnChon.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnChon.BackColor = Color.IndianRed;
+            btnChon.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnChon.ForeColor = SystemColors.Window;
             btnChon.Location = new Point(281, 15);
             btnChon.Name = "btnChon";
             btnChon.Size = new Size(165, 71);
             btnChon.TabIndex = 14;
             btnChon.Text = "Chọn";
-            btnChon.UseVisualStyleBackColor = true;
+            btnChon.UseVisualStyleBackColor = false;
             btnChon.Click += btnChon_Click;
             // 
             // btnThem
             // 
-            btnThem.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnThem.BackColor = Color.LimeGreen;
+            btnThem.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnThem.ForeColor = SystemColors.Window;
             btnThem.Location = new Point(66, 15);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(165, 71);
             btnThem.TabIndex = 15;
             btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = true;
+            btnThem.UseVisualStyleBackColor = false;
             btnThem.Click += btnThem_Click;
             // 
             // btnTimKiem
             // 
-            btnTimKiem.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnTimKiem.Location = new Point(422, 12);
+            btnTimKiem.BackColor = Color.CornflowerBlue;
+            btnTimKiem.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTimKiem.ForeColor = SystemColors.Window;
+            btnTimKiem.Location = new Point(424, 11);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(103, 30);
-            btnTimKiem.TabIndex = 76;
+            btnTimKiem.TabIndex = 84;
             btnTimKiem.Text = "Tìm kiếm";
-            btnTimKiem.UseVisualStyleBackColor = true;
+            btnTimKiem.UseVisualStyleBackColor = false;
             btnTimKiem.Click += btnTimKiem_Click;
             // 
             // txtTimKiem
             // 
             txtTimKiem.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtTimKiem.Location = new Point(12, 12);
+            txtTimKiem.Location = new Point(14, 11);
             txtTimKiem.Multiline = true;
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.PlaceholderText = "Tìm kiếm số điện thoại...";
             txtTimKiem.Size = new Size(404, 30);
-            txtTimKiem.TabIndex = 74;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 45);
-            label1.Name = "label1";
-            label1.Size = new Size(28, 15);
-            label1.TabIndex = 72;
-            label1.Text = "Tên:";
-            // 
-            // txtTen
-            // 
-            txtTen.Location = new Point(12, 67);
-            txtTen.Multiline = true;
-            txtTen.Name = "txtTen";
-            txtTen.Size = new Size(246, 33);
-            txtTen.TabIndex = 71;
-            // 
-            // dgv_Objects
-            // 
-            dgv_Objects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_Objects.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_Objects.Location = new Point(12, 204);
-            dgv_Objects.Name = "dgv_Objects";
-            dgv_Objects.RowTemplate.Height = 25;
-            dgv_Objects.Size = new Size(513, 194);
-            dgv_Objects.TabIndex = 70;
-            dgv_Objects.CellClick += dgv_Objects_CellClick;
-            // 
-            // txtSdt
-            // 
-            txtSdt.Location = new Point(264, 67);
-            txtSdt.Multiline = true;
-            txtSdt.Name = "txtSdt";
-            txtSdt.Size = new Size(261, 33);
-            txtSdt.TabIndex = 71;
+            txtTimKiem.TabIndex = 83;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(264, 45);
+            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(266, 44);
             label2.Name = "label2";
-            label2.Size = new Size(79, 15);
-            label2.TabIndex = 72;
+            label2.Size = new Size(80, 15);
+            label2.TabIndex = 80;
             label2.Text = "Số điện thoại:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(14, 44);
+            label1.Name = "label1";
+            label1.Size = new Size(29, 15);
+            label1.TabIndex = 81;
+            label1.Text = "Tên:";
+            // 
+            // txtSdt
+            // 
+            txtSdt.Location = new Point(266, 66);
+            txtSdt.Multiline = true;
+            txtSdt.Name = "txtSdt";
+            txtSdt.Size = new Size(261, 33);
+            txtSdt.TabIndex = 78;
+            // 
+            // txtTen
+            // 
+            txtTen.Location = new Point(14, 66);
+            txtTen.Multiline = true;
+            txtTen.Name = "txtTen";
+            txtTen.Size = new Size(246, 33);
+            txtTen.TabIndex = 79;
+            // 
+            // dgv_Objects
+            // 
+            dgv_Objects.BackgroundColor = SystemColors.Window;
+            dgv_Objects.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_Objects.Location = new Point(14, 203);
+            dgv_Objects.Name = "dgv_Objects";
+            dgv_Objects.RowHeadersWidth = 51;
+            dgv_Objects.RowTemplate.Height = 25;
+            dgv_Objects.Size = new Size(513, 194);
+            dgv_Objects.TabIndex = 77;
+            dgv_Objects.CellClick += dgv_Objects_CellClick;
             // 
             // TimKhachhang_Frm
             // 
@@ -170,10 +179,10 @@
         private Button btnThem;
         private Button btnTimKiem;
         private TextBox txtTimKiem;
+        private Label label2;
         private Label label1;
+        private TextBox txtSdt;
         private TextBox txtTen;
         private DataGridView dgv_Objects;
-        private TextBox txtSdt;
-        private Label label2;
     }
 }
