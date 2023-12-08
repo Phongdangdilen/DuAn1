@@ -85,12 +85,12 @@ namespace PRL
                 var confirmResult = MessageBox.Show("Xác nhận 'thêm' chất liệu không?", "Xác nhận", MessageBoxButtons.OKCancel);
 
                 if (confirmResult == DialogResult.OK)
-                                {
+                {
                     var existingProduct = _Ser.GetAll(null, null)
                                                 .FirstOrDefault(p =>
                                                     p.Tenchatlieu == txtTen.Text &&
                                                     p.Mota == txtMoTa.Text);
-                    if(existingProduct != null)
+                    if (existingProduct != null)
                     {
                         MessageBox.Show("Chất liệu đã tồn tại!");
                         result = false;

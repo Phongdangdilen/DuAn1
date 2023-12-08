@@ -358,6 +358,7 @@ namespace BanGiay.Form.US
         }
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            int soluongMuonXoa = (int)txtSoLuongMuonXoa.Value;
             if (idHoaDonChiTiet_Clicked.Count == 0)
             {
                 MessageBox.Show("Vui lòng tích vào ô chọn ở cuối bảng bên phải!");
@@ -370,19 +371,51 @@ namespace BanGiay.Form.US
 
                     if (confirmResult == DialogResult.OK)
                     {
-                        foreach (var item in idHoaDonChiTiet_Clicked)
+                        if (soluongMuonXoa <=0)
                         {
-                            var objHoaDonDaCanXoa = _Ser_HoaDonChiTiet.GetByID(item);
-                            var objGiayCanSua = _ser_GiayChiTiet.GetByID(objHoaDonDaCanXoa.Magiaychitiet);
-                            objGiayCanSua.Soluongcon = objGiayCanSua.Soluongcon + objHoaDonDaCanXoa.Soluongmua;
-                            var a = _ser_GiayChiTiet.Sua(objHoaDonDaCanXoa.Magiaychitiet, objGiayCanSua);
-                            var result = _Ser_HoaDonChiTiet.Xoa(item);
+                            foreach (var item in idHoaDonChiTiet_Clicked)
+                            {
+                                var objHoaDonDaCanXoa = _Ser_HoaDonChiTiet.GetByID(item);
+                                var objGiayCanSua = _ser_GiayChiTiet.GetByID(objHoaDonDaCanXoa.Magiaychitiet);
+                                objGiayCanSua.Soluongcon = objGiayCanSua.Soluongcon + objHoaDonDaCanXoa.Soluongmua;
+                                var a = _ser_GiayChiTiet.Sua(objHoaDonDaCanXoa.Magiaychitiet, objGiayCanSua);
+                                var result = _Ser_HoaDonChiTiet.Xoa(item);
+
+                            }
+                            MessageBox.Show("Đã 'xóa' mặt hàng trong hóa đơn");
+                            LoadGridSP(null, null);
+                            LoadGridGH(int.Parse(txtMaHoaDon.Text), "Mã hóa đơn");
+                            LamMoi_IDHoaDon();
+                        }
+                        else
+                        {
+                            bool result;
+                            foreach (var item in idHoaDonChiTiet_Clicked)
+                            {
+                                var objHoaDonDaCanXoa = _Ser_HoaDonChiTiet.GetByID(item);
+                                objHoaDonDaCanXoa.Soluongmua = objHoaDonDaCanXoa.Soluongmua - soluongMuonXoa;
+                                var objGiayCanSua = _ser_GiayChiTiet.GetByID(objHoaDonDaCanXoa.Magiaychitiet);
+                                objGiayCanSua.Soluongcon = objGiayCanSua.Soluongcon + soluongMuonXoa;
+                                var a = _ser_GiayChiTiet.Sua(objHoaDonDaCanXoa.Magiaychitiet, objGiayCanSua);
+                                if (objHoaDonDaCanXoa.Soluongmua <= 0)
+                                {
+                                    result = _Ser_HoaDonChiTiet.Xoa(item);
+                                }
+                                else
+                                {
+                                    result = _Ser_HoaDonChiTiet.Sua(item, objHoaDonDaCanXoa);
+                                }
+                            }
+                                MessageBox.Show("Đã 'xóa' mặt hàng trong hóa đơn");
+                                LoadGridSP(null, null);
+                                LoadGridGH(int.Parse(txtMaHoaDon.Text), "Mã hóa đơn");
+                                LamMoi_IDHoaDon();
+                                txtSoLuongMuonXoa.Value = 0;
+
+                            
 
                         }
-                        MessageBox.Show("Đã 'xóa' mặt hàng trong hóa đơn");
-                        LoadGridSP(null, null);
-                        LoadGridGH(int.Parse(txtMaHoaDon.Text), "Mã hóa đơn");
-                        LamMoi_IDHoaDon();
+
                     }
                     else
                     {
@@ -391,7 +424,6 @@ namespace BanGiay.Form.US
                     idHoaDonChiTiet_Clicked.Clear();
                     txtTongTienSP.Text = TinhTongTien_HoaDon(dgvHDCT).ToString();
                     LoadTien_ThanhToan();
-
                 }
                 catch (Exception ex)
                 {
@@ -662,7 +694,7 @@ namespace BanGiay.Form.US
 
                     Console.WriteLine($"Thông tin chi tiết: {ex.ToString()}");
                 }
-
+                LamMoi_ThanhToan();
             }
             else
             {
@@ -724,6 +756,7 @@ namespace BanGiay.Form.US
 
                     Console.WriteLine($"Thông tin chi tiết: {ex.ToString()}");
                 }
+               LamMoi_ThanhToan();
             }
         }
         private void txtDiemKH_TextChanged(object sender, EventArgs e)
@@ -740,7 +773,7 @@ namespace BanGiay.Form.US
         private void LoadTien_ThanhToan()
         {
             var objUuDai = _ser_UuDai.GetUudai_InTime();
-            var Obj = _Ser_KhachHang.GetAllKhachhang(null).FirstOrDefault(x => x.Makhachhang == int.Parse(txtMaKhachhang.Text));
+            var Obj = _Ser_KhachHang.GetAllKhachhang(null).FirstOrDefault(x => x.Makhachhang == (txtMaKhachhang.Text=="N/A"?1:int.Parse(txtMaKhachhang.Text)));
             txtTongTienSP.Text = TinhTongTien_HoaDon(dgvHDCT).ToString();
             txtTongTien.Text = (TinhTongTien_HoaDon(dgvHDCT)
                 - (int.Parse(txtTongTienSP.Text)
@@ -761,6 +794,7 @@ namespace BanGiay.Form.US
 
                 if (confirmResult == DialogResult.OK)
                 {
+
                     foreach (var item in _lstHoadonChiTiet)
                     {
                         var objHoaDonDaCanXoa = _Ser_HoaDonChiTiet.GetByID(item.Hoadonchitiet.Mahoadonchitiet);
@@ -835,6 +869,22 @@ namespace BanGiay.Form.US
         {
             LoadGridSP(txtTimKiem_SP.Text, "Tên giày");
         }
-
+        private void LamMoi_ThanhToan()
+        {
+            //txtMaKhachhang.Text = "1";
+            txtTenKhachHang.Text = "N/A";
+            txtMaNhanVien.Text = "N/A";
+            txtMaHoaDon.Text = "N/A";
+            txtGiamGia.Text = "";
+            cbbHinhThucThanhToan.SelectedItem = 0;
+            txtDiem_KH.Text = "";
+            chbox_Dung_DiemKH.Checked = false;
+            txtSoTienNhan.Text = "";
+            txtTongTienSP.Text = "N/A";
+            txtSoTienThua.Text = "N/A";
+            txtSoTienThieu.Text = "N/A";
+            txtTongTien.Text = "N/A";
+            txtGhiChu.Text = "";
+        }
     }
 }

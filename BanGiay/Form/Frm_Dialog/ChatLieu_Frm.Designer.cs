@@ -46,6 +46,8 @@
             // 
             // btnTimKiem
             // 
+            btnTimKiem.FlatAppearance.BorderSize = 0;
+            btnTimKiem.FlatAppearance.MouseDownBackColor = Color.FromArgb(69, 97, 120);
             btnTimKiem.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnTimKiem.Location = new Point(424, 17);
             btnTimKiem.Name = "btnTimKiem";
@@ -88,6 +90,8 @@
             // 
             // btnKhoa_MoKhoa
             // 
+            btnKhoa_MoKhoa.FlatAppearance.BorderSize = 0;
+            btnKhoa_MoKhoa.FlatAppearance.MouseDownBackColor = Color.FromArgb(69, 97, 120);
             btnKhoa_MoKhoa.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnKhoa_MoKhoa.Location = new Point(72, 51);
             btnKhoa_MoKhoa.Name = "btnKhoa_MoKhoa";
@@ -99,6 +103,8 @@
             // 
             // btnSua
             // 
+            btnSua.FlatAppearance.BorderSize = 0;
+            btnSua.FlatAppearance.MouseDownBackColor = Color.FromArgb(69, 97, 120);
             btnSua.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnSua.Location = new Point(133, 16);
             btnSua.Name = "btnSua";
@@ -110,6 +116,8 @@
             // 
             // btnThem
             // 
+            btnThem.FlatAppearance.BorderSize = 0;
+            btnThem.FlatAppearance.MouseDownBackColor = Color.FromArgb(69, 97, 120);
             btnThem.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnThem.Location = new Point(37, 16);
             btnThem.Name = "btnThem";

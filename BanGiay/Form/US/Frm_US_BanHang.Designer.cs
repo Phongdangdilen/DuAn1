@@ -66,6 +66,8 @@
             panel7 = new Panel();
             txtID_HDCT = new TextBox();
             panel6 = new Panel();
+            txtSoLuongMuonXoa = new NumericUpDown();
+            panel9 = new Panel();
             btnXoa_HDCT = new Button();
             panel5 = new Panel();
             btnChontatCa = new Button();
@@ -88,6 +90,8 @@
             groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvHDCT).BeginInit();
             panel4.SuspendLayout();
+            panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtSoLuongMuonXoa).BeginInit();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSP).BeginInit();
             panel8.SuspendLayout();
@@ -498,7 +502,7 @@
             btnLamMoi_ID_HDCT.FlatAppearance.MouseDownBackColor = Color.FromArgb(69, 97, 120);
             btnLamMoi_ID_HDCT.FlatStyle = FlatStyle.Flat;
             btnLamMoi_ID_HDCT.ForeColor = Color.White;
-            btnLamMoi_ID_HDCT.Location = new Point(332, 0);
+            btnLamMoi_ID_HDCT.Location = new Point(216, 0);
             btnLamMoi_ID_HDCT.Name = "btnLamMoi_ID_HDCT";
             btnLamMoi_ID_HDCT.Size = new Size(75, 35);
             btnLamMoi_ID_HDCT.TabIndex = 6;
@@ -509,7 +513,7 @@
             // panel7
             // 
             panel7.Dock = DockStyle.Right;
-            panel7.Location = new Point(407, 0);
+            panel7.Location = new Point(291, 0);
             panel7.Name = "panel7";
             panel7.Size = new Size(16, 35);
             panel7.TabIndex = 5;
@@ -518,7 +522,8 @@
             // 
             txtID_HDCT.BorderStyle = BorderStyle.FixedSingle;
             txtID_HDCT.Dock = DockStyle.Right;
-            txtID_HDCT.Location = new Point(423, 0);
+            txtID_HDCT.Enabled = false;
+            txtID_HDCT.Location = new Point(307, 0);
             txtID_HDCT.Multiline = true;
             txtID_HDCT.Name = "txtID_HDCT";
             txtID_HDCT.PlaceholderText = "...";
@@ -528,11 +533,30 @@
             // 
             // panel6
             // 
+            panel6.Controls.Add(txtSoLuongMuonXoa);
+            panel6.Controls.Add(panel9);
             panel6.Dock = DockStyle.Right;
-            panel6.Location = new Point(523, 0);
+            panel6.Location = new Point(407, 0);
             panel6.Name = "panel6";
-            panel6.Size = new Size(61, 35);
+            panel6.Size = new Size(177, 35);
             panel6.TabIndex = 3;
+            // 
+            // txtSoLuongMuonXoa
+            // 
+            txtSoLuongMuonXoa.BorderStyle = BorderStyle.FixedSingle;
+            txtSoLuongMuonXoa.Location = new Point(22, 6);
+            txtSoLuongMuonXoa.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
+            txtSoLuongMuonXoa.Name = "txtSoLuongMuonXoa";
+            txtSoLuongMuonXoa.Size = new Size(120, 23);
+            txtSoLuongMuonXoa.TabIndex = 8;
+            // 
+            // panel9
+            // 
+            panel9.Dock = DockStyle.Left;
+            panel9.Location = new Point(0, 0);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(16, 35);
+            panel9.TabIndex = 7;
             // 
             // btnXoa_HDCT
             // 
@@ -648,6 +672,7 @@
             txtTimKiem_SP.PlaceholderText = "Tìm kiếm...";
             txtTimKiem_SP.Size = new Size(283, 35);
             txtTimKiem_SP.TabIndex = 1;
+            txtTimKiem_SP.TextChanged += btnTimKiem_SP_Click;
             // 
             // btnLamMoi
             // 
@@ -762,6 +787,8 @@
             ((System.ComponentModel.ISupportInitialize)dgvHDCT).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)txtSoLuongMuonXoa).EndInit();
             groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvSP).EndInit();
             panel8.ResumeLayout(false);
@@ -818,7 +845,6 @@
         private Button btnLamMoi_ID_HDCT;
         private Panel panel7;
         private TextBox txtID_HDCT;
-        private Panel panel6;
         private Button btnXoa_HDCT;
         private Panel panel5;
         private Button btnChontatCa;
@@ -835,5 +861,8 @@
         private Button btn_Xoa_HD;
         private Panel panel3;
         private Button btnThem_HD;
+        private Panel panel6;
+        private Panel panel9;
+        private NumericUpDown txtSoLuongMuonXoa;
     }
 }

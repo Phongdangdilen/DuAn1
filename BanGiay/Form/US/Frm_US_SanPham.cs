@@ -57,8 +57,6 @@ namespace BanGiay.Form.US
             Giay_Frm formGiay = new Giay_Frm();
             formGiay.ShowDialog();
             LoadCBB_Giay(null);
-
-
         }
         private void ptbKieuDang_Click(object sender, EventArgs e)
         {
@@ -98,6 +96,8 @@ namespace BanGiay.Form.US
             txtMoTa.Text = "";
             txtSoLuong.Text = "";
             txtTimKiem.Text = "";
+            cbbTenGiay.Enabled = true;
+            cbbTenThuongHieu.Enabled = true;
         }
         public void LoadCBB_TimKiem()
         {
@@ -412,6 +412,8 @@ namespace BanGiay.Form.US
             cbbTenMauSac.SelectedValue = objCellClick.Mamausac;
             cbbTenKichCo.SelectedValue = objCellClick.Makichco;
 
+            cbbTenGiay.Enabled = false;
+            cbbTenThuongHieu.Enabled = false;
         }
         private void CheckTextbox()
         {
