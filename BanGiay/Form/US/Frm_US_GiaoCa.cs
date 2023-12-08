@@ -285,7 +285,6 @@ namespace BanGiay.Form.US
                     MessageBox.Show("Xuất file thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            MessageBox.Show("Dữ liệu đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void txtTimkiemGiaoca_TextChanged(object sender, EventArgs e)
