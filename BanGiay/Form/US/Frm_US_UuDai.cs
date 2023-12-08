@@ -22,6 +22,7 @@ namespace BanGiay.Form.US
             datebatdau.CustomFormat = "dd/MM/yyyy HH:mm";
             dateketthuc.Format = DateTimePickerFormat.Custom;
             dateketthuc.CustomFormat = "dd/MM/yyyy HH:mm";
+            CapNhatTrangThaiUuDai();
             loadGird(null);
         }
         DangNhap_Frm dangNhapForm = new();
@@ -47,7 +48,8 @@ namespace BanGiay.Form.US
             dtgHienthi.Rows.Clear();
             foreach (var x in _service.GetUudais(search))
             {
-                dtgHienthi.Rows.Add(stt++, x.Mauudai, x.Tenuudai, x.Mataikhoan, x.Phantram, x.Soluong, x.Ngaybatdau, x.Ngayketthuc, MapTrangThai(x.Trangthai));
+                dtgHienthi.Rows.Add(stt++,
+                    x.Mauudai, x.Tenuudai, x.Mataikhoan, x.Phantram, x.Soluong, x.Ngaybatdau, x.Ngayketthuc,(x.Trangthai==0?"Kết thúc":(x.Trangthai==1?"Sắp diễn ra":"Đang diễn ra")));
             }
         }
         private void CapNhatTrangThaiUuDai()
