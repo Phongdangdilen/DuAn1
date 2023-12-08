@@ -172,6 +172,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Window;
             ClientSize = new Size(711, 398);
             Controls.Add(txtQuenMatKhau);
             Controls.Add(txtMatKhau);

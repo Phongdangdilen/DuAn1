@@ -50,6 +50,34 @@ namespace BanGiay.Form.US
                 dtgHienthi.Rows.Add(stt++, x.Mauudai, x.Tenuudai, x.Mataikhoan, x.Phantram, x.Soluong, x.Ngaybatdau, x.Ngayketthuc, MapTrangThai(x.Trangthai));
             }
         }
+        private void CapNhatTrangThaiUuDai()
+        {
+            int rowCount = dtgHienthi.Rows.Count;
+
+            if (rowCount > 0)
+            {
+                for (int i = 0; i < rowCount - 1; i++)
+                {
+                    DateTime Ngayhientai = DateTime.Now;
+                    DateTime? ngayBatDau = dtgHienthi.Rows[i].Cells[6].Value != null ? DateTime.Parse(dtgHienthi.Rows[i].Cells[6].Value.ToString()) : (DateTime?)null;
+                    DateTime? ngayKetThuc = dtgHienthi.Rows[i].Cells[7].Value != null ? DateTime.Parse(dtgHienthi.Rows[i].Cells[7].Value.ToString()) : (DateTime?)null;
+
+                    string trangThai = MapTrangThai(Ngayhientai, ngayBatDau, ngayKetThuc);
+                    dtgHienthi.Rows[i].Cells[8].Value = trangThai;
+                }
+            }
+        }
+        private string MapTrangThai(DateTime ngayHienTai, DateTime? ngayBatDau, DateTime? ngayKetThuc)
+        {
+            if (ngayBatDau == null && ngayKetThuc == null)
+                return "Kết thúc";
+            else if (ngayBatDau != null && ngayHienTai < ngayBatDau.Value)
+                return "Sắp diễn ra";
+            else if (ngayBatDau != null && ngayHienTai >= ngayBatDau.Value && (ngayKetThuc == null || ngayHienTai <= ngayKetThuc.Value))
+                return "Đang diễn ra";
+            else
+                return "Kết thúc";
+        }
         private string MapTrangThai(int? trangThai)
         {
             switch (trangThai)
@@ -122,6 +150,7 @@ namespace BanGiay.Form.US
             {
                 MessageBox.Show(_service.AddUudai(uudai));
             }
+            CapNhatTrangThaiUuDai();
             loadGird(null);
         }
         private void btnSua_Click(object sender, EventArgs e)
@@ -157,16 +186,17 @@ namespace BanGiay.Form.US
             {
                 uudai.Trangthai = 0;
             }
-            if (checktrung(ngayBatDau, ngayKetThuc))
-            {
-                MessageBox.Show("Không thể cập nhật ưu đãi vì đã tồn tại ưu đãi trong khoảng thời gian này.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            //if (checktrung(ngayBatDau, ngayKetThuc))
+            //{
+            //    MessageBox.Show("Không thể cập nhật ưu đãi vì đã tồn tại ưu đãi trong khoảng thời gian này.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
             var relust = MessageBox.Show("Xác nhận muốm sửa", "Xác nhận", MessageBoxButtons.YesNo);
             if (relust == DialogResult.Yes)
             {
                 MessageBox.Show(_service.Updateuudai(uudai));
             }
+            CapNhatTrangThaiUuDai();
             loadGird(null);
         }
         private void btnlammoi_Click(object sender, EventArgs e)
@@ -179,6 +209,7 @@ namespace BanGiay.Form.US
         }
         private void btnketthuc_Click(object sender, EventArgs e)
         {
+            CapNhatTrangThaiUuDai();
             Uudai uudai = new Uudai();
             uudai.Mauudai = _idWhenhClick;
             var relust = MessageBox.Show("Xác nhận muốm kết thúc", "Xác nhận", MessageBoxButtons.YesNo);
@@ -186,6 +217,7 @@ namespace BanGiay.Form.US
             {
                 MessageBox.Show(_service.Trangthai(uudai));
             }
+            CapNhatTrangThaiUuDai();
             loadGird(null);
         }
         public bool checktrung(DateTime? ngayBatDau, DateTime? ngayKetThuc, int? mauudai = null)

@@ -38,7 +38,7 @@ namespace BanGiay.Form.US
                 dgvKH.Rows.Add(stt++, x.Makhachhang, x.Tenkhachhang, x.Sdt, x.Diemkhachhang, x.Trangthai == false ? "Không hoạt động" : "Hoạt đông");
             }
         }
-        public void Loadhodon()
+        public void Loadhodon(int selectedID)
         {
 
             int stt = 1;
@@ -50,13 +50,12 @@ namespace BanGiay.Form.US
             dgvHD.Columns[4].Name = "Tổng tiền";
 
             dgvHD.Rows.Clear();
-            foreach (var e in _service.GetAllHoadon())
+            foreach (var e in _service.GetAllHoadon().Where(x => x.Makhachhang == selectedID))
             {
                 var idtt = _service.GetHinhthucthanhtoans().FirstOrDefault(x => x.Mahinhthucthanhtoan == e.Mahinhthucthanhtoan);
                 dgvHD.Rows.Add(stt++, e.Mahoadon, e.Ngaytao, idtt.Tenhinhthuc, e.Tongtien);
             }
         }
-
 
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -86,6 +85,10 @@ namespace BanGiay.Form.US
         private void dgvKH_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
+            if (index < 0 || index >= _service.GetAllKhachhang(null).Count)
+            {
+                return;
+            }
 
             if (index >= 0)
             {
@@ -95,7 +98,7 @@ namespace BanGiay.Form.US
                 txtHoVaTen.Text = khach.Tenkhachhang;
                 txtSDT.Text = khach.Sdt;
                 txtDiemKH.Text = khach.Diemkhachhang.ToString();
-                Loadhodon();
+                Loadhodon(_idWhenClick);
             }
         }
 

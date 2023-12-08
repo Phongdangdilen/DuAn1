@@ -21,6 +21,7 @@ namespace BanGiay.Form.US
             Loadcombobox();
         }
         HoaDonService _service = new HoaDonService();
+        
         int _idWhenclick;
 
 
@@ -65,7 +66,7 @@ namespace BanGiay.Form.US
             }
         }
 
-        public void loadgridHoadonchitiet()
+        public void loadgridHoadonchitiet(int selectedID)
         {
             int stt = 1;
             dgvHDCT.ColumnCount = 5;
@@ -76,7 +77,7 @@ namespace BanGiay.Form.US
             dgvHDCT.Columns[4].Name = "Giá bán";
 
             dgvHDCT.Rows.Clear();
-            foreach (var e in _service.GetHoadonchitiets())
+            foreach (var e in _service.GetHoadonchitiets().Where(x => x.Mahoadon == selectedID))
             {
                 var idspct = _service.GetGiaychitiets().FirstOrDefault(i => i.Magiaychitiet == e.Magiaychitiet);
                 var idsp = _service.GetGiays().FirstOrDefault(s => s.Magiay == idspct.Magiay);
@@ -86,9 +87,15 @@ namespace BanGiay.Form.US
         private void dtgHoadon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
-
+            if (index < 0 || index >= _service.hoaDonNhes(null, null).Count)
+            {
+                return;
+            }
             _idWhenclick = int.Parse(dgvHD.Rows[index].Cells[1].Value.ToString());
-            loadgridHoadonchitiet();
+            loadgridHoadonchitiet(_idWhenclick);
+
+
+
         }
 
 

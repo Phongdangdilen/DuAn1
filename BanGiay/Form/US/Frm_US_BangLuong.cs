@@ -1,5 +1,6 @@
 ﻿using BUS.Services;
 using DAL.Models.DomainClass;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -88,6 +89,10 @@ namespace BanGiay.Form.US
         private void dgvHienThi_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowindex = e.RowIndex;
+            if (rowindex < 0 || rowindex >= _service.bangluongs(null).Count)
+            {
+                return;
+            }
 
             _idWhenclick = int.Parse(dgvHienThi.Rows[rowindex].Cells[1].Value.ToString());
             var obj = _service.bangluongs(null).FirstOrDefault(x => x.Maluong == _idWhenclick);
