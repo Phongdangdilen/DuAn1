@@ -300,6 +300,7 @@
             Controls.Add(panel1);
             Name = "Frm_US_UuDai";
             Size = new Size(1094, 733);
+            Load += Frm_US_UuDai_Load;
             panel1.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();

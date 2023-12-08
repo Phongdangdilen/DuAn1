@@ -49,7 +49,7 @@ namespace BanGiay.Form.US
             foreach (var x in _service.GetUudais(search))
             {
                 dtgHienthi.Rows.Add(stt++,
-                    x.Mauudai, x.Tenuudai, x.Mataikhoan, x.Phantram, x.Soluong, x.Ngaybatdau, x.Ngayketthuc,(x.Trangthai==0?"Kết thúc":(x.Trangthai==1?"Sắp diễn ra":"Đang diễn ra")));
+                    x.Mauudai, x.Tenuudai, x.Mataikhoan, x.Phantram, x.Soluong, x.Ngaybatdau, x.Ngayketthuc, (x.Trangthai == 0 ? "Kết thúc" : (x.Trangthai == 1 ? "Sắp diễn ra" : "Đang diễn ra")));
             }
         }
         private void CapNhatTrangThaiUuDai()
@@ -233,7 +233,33 @@ namespace BanGiay.Form.US
 
             return obj != null;
         }
+        //private void UpdateTrangThai()
+        //{
+        //    DateTime thoiGianHienTai = DateTime.Now;
+        //    var _lst_UuDai = _service.GetUudais(null);
+        //    foreach (var item in _lst_UuDai)
+        //    {
+        //        if (item.Ngaybatdau > thoiGianHienTai && item.Ngayketthuc > thoiGianHienTai)
+        //        {
+        //            item.Trangthai = 1;
+        //            _service.Updateuudai(item);
+        //        }
+        //        else if (item.Ngaybatdau < thoiGianHienTai && item.Ngayketthuc < thoiGianHienTai)
+        //        {
+        //            item.Trangthai = 0;
+        //            _service.Updateuudai(item);
+        //        }
+        //        else if (item.Ngaybatdau < thoiGianHienTai && item.Ngayketthuc > thoiGianHienTai)
+        //        {
+        //            item.Trangthai = 2;
+        //            _service.Updateuudai(item);
+        //        }
+        //    }
+        //}
 
-
+        private void Frm_US_UuDai_Load(object sender, EventArgs e)
+        {
+            //UpdateTrangThai();
+        }
     }
 }
