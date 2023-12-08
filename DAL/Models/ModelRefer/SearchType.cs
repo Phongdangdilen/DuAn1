@@ -76,14 +76,16 @@ namespace DAL.Models.ModelRefer
         public const string moTaKieuDang = "Mô tả kiểu dáng";
         public const string trangThaiKieuDang = "Trạng thái Kiểu dáng";
         public const string idNguoiThemKieuDang = "ID Người thêm Kiểu dáng";
-        public const string soLuongTrongKhoNhoHon = "Số lượng trong kho <= (x)";
-        public const string soLuongTrongKhoLonHon = "Số lượng trong kho >= (x)";
+        public const string soLuongTrongKhoNhoHon = "số lượng <= (x) ";
+        public const string soLuongTrongKhoLonHon = "số lượng >= (x) ";
         public const string ngayTao_GiayChiTiet = "Ngày tạo giày";
         public const string ngaySua_GiayChiTiet = "Ngày sửa giày";
         public const string idNguoiTao_GiayChiTiet = "Mã người tạo giày";
         public const string idNguoiSua_GiayChiTiet = "Mã người sửa giày";
-        public const string giaLonHon_GiayChiTiet = "Giá lớn hơn";
-        public const string giaNhoHon_GiayChiTiet = "Giá nhỏ hơn";
+        public const string tenNguoiSua_GiayChiTiet = "Tên người sửa giày";
+        public const string tenNguoiTao_GiayChiTiet = "Tên người tạo giày";
+        public const string giaLonHon_GiayChiTiet = "(x) <= giá";
+        public const string giaNhoHon_GiayChiTiet = "(x) >= giá";
         public const string moTa_GiayChiTiet = "Mô tả";
         public const string trangThai_GiayChiTiet = "Trạng thái Giày";
         public const string tenca = "Tên ca";
@@ -96,7 +98,7 @@ namespace DAL.Models.ModelRefer
         public const string hinhthucthanhtoan = "Hình thức thanh toán";
         public const string SDTkhach = "Số điện thoại khách";
         public const string TenTaikhoan = "Tên nhân viên";
-        public const string tenkhach = "Tên khach";
+        public const string tenkhach = "Tên khách";
 
     }
 }

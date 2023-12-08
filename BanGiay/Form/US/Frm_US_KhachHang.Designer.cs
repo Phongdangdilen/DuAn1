@@ -224,7 +224,7 @@
             groupBox2.Size = new Size(1094, 276);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Hóa đon đã mua";
+            groupBox2.Text = "Hóa đơn đã mua";
             // 
             // dgvHD
             // 

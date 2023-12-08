@@ -27,6 +27,7 @@ namespace BanGiay.Form.US
         GiayService _Ser_Giay = new GiayService();
         KichCoService _Ser_KichCo = new KichCoService();
         KieuDangService _Ser_KieuDang = new KieuDangService();
+        Giay_ChiTietGiayService _Ser_Giay_ChiTietGiay = new Giay_ChiTietGiayService();
         MauSacService _Ser_MauSac = new MauSacService();
         ThuongHieuServices _Ser_ThuongHieu = new ThuongHieuServices();
         List<Giay> _lstGiay = new List<Giay>();
@@ -36,6 +37,7 @@ namespace BanGiay.Form.US
         List<Mausac> _lstMauSac = new List<Mausac>();
         List<Thuonghieu> _lstThuongHieu = new List<Thuonghieu>();
         List<Giaychitiet> _lstGiayChiTiet = new List<Giaychitiet>();
+        List<Giay_ChiTietGiay> _lstGiay_ChiTietGiay = new();
         DangNhap_Frm formDangNhap = new DangNhap_Frm();
         int idClicked;
         bool checkedTexbox;
@@ -103,18 +105,10 @@ namespace BanGiay.Form.US
         {
             cbbTimKiem.Items.Clear();
             cbbTimKiem.Items.Add(SearchType.All);
-            cbbTimKiem.Items.Add(SearchType.maGiay);
-            cbbTimKiem.Items.Add(SearchType.maChatLieu);
-            cbbTimKiem.Items.Add(SearchType.maMauSac);
-            cbbTimKiem.Items.Add(SearchType.maKichCo);
-            cbbTimKiem.Items.Add(SearchType.maThuongHieu);
-            cbbTimKiem.Items.Add(SearchType.maKieuDang);
             cbbTimKiem.Items.Add(SearchType.soLuongTrongKhoNhoHon);
             cbbTimKiem.Items.Add(SearchType.soLuongTrongKhoLonHon);
-            cbbTimKiem.Items.Add(SearchType.ngayTao_GiayChiTiet);
-            cbbTimKiem.Items.Add(SearchType.ngaySua_GiayChiTiet);
-            cbbTimKiem.Items.Add(SearchType.idNguoiTao_GiayChiTiet);
-            cbbTimKiem.Items.Add(SearchType.idNguoiSua_GiayChiTiet);
+            cbbTimKiem.Items.Add(SearchType.tenNguoiTao_GiayChiTiet);
+            cbbTimKiem.Items.Add(SearchType.tenNguoiSua_GiayChiTiet);
             cbbTimKiem.Items.Add(SearchType.giaNhoHon_GiayChiTiet);
             cbbTimKiem.Items.Add(SearchType.giaLonHon_GiayChiTiet);
             cbbTimKiem.Items.Add(SearchType.moTa_GiayChiTiet);
@@ -170,50 +164,78 @@ namespace BanGiay.Form.US
 
             dgvSP.ColumnCount = 16;
             dgvSP.Columns[0].Name = "STT";
-            dgvSP.Columns[1].Name = "Mã giày";
-            dgvSP.Columns[2].Name = "Mã giày chi tiết";
-            dgvSP.Columns[3].Name = "Mã chất liệu";
-            dgvSP.Columns[4].Name = "Mã màu sắc";
-            dgvSP.Columns[5].Name = "Mã kích cỡ";
-            dgvSP.Columns[6].Name = "Mã thương hiệu";
-            dgvSP.Columns[7].Name = "Mã kiểu dáng";
+            dgvSP.Columns[1].Name = "Mã giày CT";
+            dgvSP.Columns[2].Name = "Tên giày";
+            dgvSP.Columns[3].Name = "Tên chất liệu";
+            dgvSP.Columns[4].Name = "Tên màu sắc";
+            dgvSP.Columns[5].Name = "Tên kích cỡ";
+            dgvSP.Columns[6].Name = "Tên thương hiệu";
+            dgvSP.Columns[7].Name = "Tên kiểu dáng";
             dgvSP.Columns[8].Name = "Ngày tạo";
-            dgvSP.Columns[9].Name = "Mã người tạo";
+            dgvSP.Columns[9].Name = "Tên người tạo";
             dgvSP.Columns[10].Name = "Ngày sửa";
-            dgvSP.Columns[11].Name = "Mã người sửa gần nhất";
+            dgvSP.Columns[11].Name = "Tên người sửa gần nhất";
             dgvSP.Columns[12].Name = "Giá";
             dgvSP.Columns[13].Name = "Mô tả";
             dgvSP.Columns[14].Name = "Số lượng trong kho";
             dgvSP.Columns[15].Name = "Trạng thái";
 
-            _lstGiayChiTiet = _Ser_ChiTietGiay.GetAll(txtTimKiem, SearchType);
+            _lstGiay_ChiTietGiay = _Ser_Giay_ChiTietGiay.GetAll(txtTimKiem, SearchType);
 
-            foreach (var item in _lstGiayChiTiet)
+            foreach (var item in _lstGiay_ChiTietGiay)
             {
-                int stt = _lstGiayChiTiet.IndexOf(item) + 1;
+                int stt = _lstGiay_ChiTietGiay.IndexOf(item) + 1;
 
                 dgvSP.Rows.Add(stt,
-                    item.Magiay,
-                    item.Magiaychitiet,
-                    item.Machatlieu,
-                    item.Mamausac,
-                    item.Makichco,
-                    item.Mathuonghieu,
-                    item.Makieudang,
-                    item.Ngaytao,
-                    item.Nguoitao,
-                    item.Ngaysua,
-                    item.Nguoisua,
-                    item.Gia,
-                    item.Mota,
-                    item.Soluongcon,
-                    (item.Trangthai==true?"Đang hoạt động":"Ngừng hoạt động"));
+                    item.giaychitiet.Magiaychitiet,
+                    item.tenGiay,
+                    item.tenChatLieu,
+                    item.tenMauSac,
+                    item.tenKichCo,
+                    item.tenThuongHieu,
+                    item.tenThuongHieu,
+                    item.giaychitiet.Ngaytao,
+                    item.tenNguoiTao,
+                    item.giaychitiet.Ngaysua,
+                    item.tenNguoiSua,
+                    item.gia,
+                    item.giaychitiet.Mota,
+                    item.soLuongCon,
+                    (item.trangThai==true?"Đang hoạt động":"Ngừng hoạt động"));
             }
 
         }
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            LoadDataGridView(txtTimKiem.Text, cbbTimKiem.Text);
+            if (txtTimKiem.Text == "")
+            {
+                LoadDataGridView(null, null);
+            }
+            if (cbbTimKiem.Text == "(x) < giá"||cbbTimKiem.Text== "(x) > giá"||cbbTimKiem.Text== "số lượng <= (x) "||cbbTimKiem.Text== "số lượng >= (x) ")
+            {
+                if (!int.TryParse(txtTimKiem.Text, out int n))
+                {
+                    MessageBox.Show("Vui lòng nhập số");
+                }
+                else
+                {
+                    LoadDataGridView(txtTimKiem.Text, cbbTimKiem.Text);
+                }
+            }if(cbbTimKiem.Text == "Trạng thái Giày")
+            {
+                if(txtTimKiem.Text != "false" && txtTimKiem.Text != "true")
+                {
+                    MessageBox.Show("Chỉ nhận giá trị 'true' hoặc 'false'");
+                }
+                else
+                {
+                    LoadDataGridView(txtTimKiem.Text, cbbTimKiem.Text);
+                }
+            }
+            else
+            {
+                LoadDataGridView(txtTimKiem.Text, cbbTimKiem.Text);
+            }
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -329,12 +351,15 @@ namespace BanGiay.Form.US
                 ClearTextBox();
 
             }
-
-
+            LoadDataGridView(null, null);
         }
         private void btnKhoaMoKhoa_Click(object sender, EventArgs e)
         {
-            if (_Ser_ChiTietGiay.GetByID(idClicked).Trangthai == true)
+            if (idClicked == 0 || idClicked == null)
+            {
+                MessageBox.Show("Vui lòng click vào id muốn khóa/mở khóa trong bảng sản phẩm");
+            }
+            else if (_Ser_ChiTietGiay.GetByID(idClicked).Trangthai == true)
             {
                 var confirmResult = MessageBox.Show("Xác nhận 'khóa' giày này không?", "Xác nhận", MessageBoxButtons.OKCancel);
 
@@ -392,25 +417,24 @@ namespace BanGiay.Form.US
         {
             int index = e.RowIndex;
 
-            if (index < 0 || index >= _lstGiayChiTiet.Count)
+            if (index < 0 || index >= _lstGiay_ChiTietGiay.Count)
             {
                 ClearTextBox();
                 return;
             }
+            var objCellClick = _lstGiay_ChiTietGiay[index];
 
-            var objCellClick = _lstGiayChiTiet[index];
+            idClicked = objCellClick.giaychitiet.Magiaychitiet;
 
-            idClicked = objCellClick.Magiaychitiet;
-
-            cbbTenGiay.SelectedValue = objCellClick.Magiay;
-            txtGia.Text = objCellClick.Gia.ToString();
-            txtSoLuong.Text = objCellClick.Soluongcon.ToString();
-            txtMoTa.Text = objCellClick.Mota;
-            cbbTenThuongHieu.SelectedValue = objCellClick.Mathuonghieu;
-            cbbTenKieuDang.SelectedValue = objCellClick.Makieudang;
-            cbbTenChatLieu.SelectedValue = objCellClick.Machatlieu;
-            cbbTenMauSac.SelectedValue = objCellClick.Mamausac;
-            cbbTenKichCo.SelectedValue = objCellClick.Makichco;
+            cbbTenGiay.SelectedValue = objCellClick.giaychitiet.Magiay;
+            txtGia.Text = objCellClick.gia.ToString();
+            txtSoLuong.Text = objCellClick.soLuongCon.ToString();
+            txtMoTa.Text = objCellClick.giaychitiet.Mota;
+            cbbTenThuongHieu.SelectedValue = objCellClick.giaychitiet.Mathuonghieu;
+            cbbTenKieuDang.SelectedValue = objCellClick.giaychitiet.Makieudang;
+            cbbTenChatLieu.SelectedValue = objCellClick.giaychitiet.Machatlieu;
+            cbbTenMauSac.SelectedValue = objCellClick.giaychitiet.Mamausac;
+            cbbTenKichCo.SelectedValue = objCellClick.giaychitiet.Makichco;
 
             cbbTenGiay.Enabled = false;
             cbbTenThuongHieu.Enabled = false;
@@ -444,7 +468,5 @@ namespace BanGiay.Form.US
             }
 
         }
-
-
     }
 }

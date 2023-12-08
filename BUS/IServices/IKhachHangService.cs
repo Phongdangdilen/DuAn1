@@ -15,5 +15,6 @@ namespace BUS.IServices
         public string AddKhachHang(Khachhang khachhang);
         public string UpdateKhachHang(Khachhang khachhang);
         public string Khoa_MoKhoa(Khachhang khachhang);
+
     }
 }

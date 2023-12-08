@@ -282,7 +282,7 @@
             // 
             // dtgHienthi
             // 
-            dtgHienthi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dtgHienthi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgHienthi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgHienthi.Dock = DockStyle.Fill;
             dtgHienthi.Location = new Point(3, 19);

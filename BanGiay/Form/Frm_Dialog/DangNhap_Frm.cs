@@ -1,4 +1,4 @@
-﻿ using BUS.Services;
+﻿using BUS.Services;
 using DAL.Models.DomainClass;
 using DAL.Models.ModelRefer;
 using System;
@@ -18,6 +18,7 @@ namespace PRL.Frm_Main
         TaiKhoanService _Ser_TaiKhoan = new TaiKhoanService();
         List<Taikhoan> _lstTaiKhoan = new List<Taikhoan>();
         int idTaiKhoan;
+        bool? trangThai_TaiKhoan;
         string hoVaTen;
         int maChucVu;
         public DangNhap_Frm()
@@ -27,8 +28,6 @@ namespace PRL.Frm_Main
         private void DangNhap_Frm_Load(object sender, EventArgs e)
         {
             txtMatKhau.UseSystemPasswordChar = true;
-            LoadMau();
-            this.BackColor = Color.FromArgb(69, 97, 120);
         }
         private void btnDangnhap_Click(object sender, EventArgs e)
         {
@@ -43,11 +42,18 @@ namespace PRL.Frm_Main
                     idTaiKhoan = user.Mataikhoan;
                     maChucVu = user.Machucvu;
                     hoVaTen = user.Hovaten;
-                    LoginManager.Instance.UpdateLoginInfo(user.Mataikhoan, user.Machucvu, user.Hovaten);
-                    return true;
+                    trangThai_TaiKhoan = user.Trangthai;
+                    if (user.Trangthai == true)
+                    {
+                        LoginManager.Instance.UpdateLoginInfo(user.Mataikhoan, user.Machucvu, user.Hovaten);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
-
             return false;
         }
         private void btnQuenmk_Click(object sender, EventArgs e)
@@ -72,21 +78,15 @@ namespace PRL.Frm_Main
             }
             else
             {
-                MessageBox.Show("Đăng nhập thất bại. Sai tên đăng nhập hoặc mật khẩu.");
+                if (trangThai_TaiKhoan == false)
+                {
+                    MessageBox.Show("Tài khoản này đã bị khóa không thể đăng nhập");
+                }
+                else
+                {
+                    MessageBox.Show("Đăng nhập thất bại. Sai tên đăng nhập hoặc mật khẩu.");
+                }
             }
-        }
-        public void LoadMau()
-        {
-            txt1.ForeColor = Color.FromArgb(255, 255, 255);
-            txt2.ForeColor = Color.FromArgb(255, 255, 255);
-            txt3.ForeColor = Color.FromArgb(255, 255, 255);
-            txt4.ForeColor = Color.FromArgb(255, 255, 255);
-            txt1.ForeColor = Color.FromArgb(255, 255, 255);
-            txtMatKhau.BackColor = Color.FromArgb(221, 242, 253);
-            txtTaiKhoan.BackColor = Color.FromArgb(221, 242, 253);
-            btnDangnhap.BackColor = Color.FromArgb(243, 19, 86);
-            btnDangnhap.ForeColor = Color.FromArgb(255, 255, 255);
-            txtQuenMatKhau.ForeColor = Color.FromArgb(255, 255, 255);
         }
         private void ptbTat_Click(object sender, EventArgs e)
         {

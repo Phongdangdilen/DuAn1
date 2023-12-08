@@ -162,8 +162,6 @@ namespace BanGiay
             hoVaTen = LoginManager.Instance.HoVaTen;
             txtTenTaiKhoan.Text = hoVaTen;
             btnBanHang.PerformClick();
-
-
         }
         private void Load_Usercontrol(UserControl userControl)
         {

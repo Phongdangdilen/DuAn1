@@ -99,16 +99,17 @@ namespace BanGiay.Form.US
         public void LoadGridSP(string? txtSearch, string? Searchtype)
         {
             int stt = 1;
-            dgvSP.ColumnCount = 9;
+            dgvSP.ColumnCount = 10;
             dgvSP.Columns[0].Name = "STT";
-            dgvSP.Columns[1].Name = "Tên giày";
-            dgvSP.Columns[2].Name = "Thương hiệu";
-            dgvSP.Columns[3].Name = "Kích cỡ";
-            dgvSP.Columns[4].Name = "Màu sắc";
-            dgvSP.Columns[5].Name = "chất liệu";
-            dgvSP.Columns[6].Name = "Kiểu dáng";
-            dgvSP.Columns[7].Name = "Số lượng";
-            dgvSP.Columns[8].Name = "Giá";
+            dgvSP.Columns[1].Name = "Mã giày chi tiết";
+            dgvSP.Columns[2].Name = "Tên giày";
+            dgvSP.Columns[3].Name = "Thương hiệu";
+            dgvSP.Columns[4].Name = "Kích cỡ";
+            dgvSP.Columns[5].Name = "Màu sắc";
+            dgvSP.Columns[6].Name = "chất liệu";
+            dgvSP.Columns[7].Name = "Kiểu dáng";
+            dgvSP.Columns[8].Name = "Số lượng";
+            dgvSP.Columns[9].Name = "Giá";
             dgvSP.Rows.Clear();
             if (txtSearch == null && Searchtype == null)
             {
@@ -121,7 +122,7 @@ namespace BanGiay.Form.US
             }
             foreach (var item in _lstGiay_ChiTietGiay)
             {
-                dgvSP.Rows.Add(stt++, item.tenGiay, item.tenThuongHieu, item.tenKichCo, item.tenMauSac, item.tenChatLieu, item.tenKieuDang, item.soLuongCon, item.gia);
+                dgvSP.Rows.Add(stt++, item.giaychitiet.Magiaychitiet,item.tenGiay, item.tenThuongHieu, item.tenKichCo, item.tenMauSac, item.tenChatLieu, item.tenKieuDang, item.soLuongCon, item.gia);
             }
         }
         private void LoadHinhThucThanhToan()

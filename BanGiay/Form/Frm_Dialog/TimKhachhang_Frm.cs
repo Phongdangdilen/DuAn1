@@ -85,9 +85,17 @@ namespace PRL.Frm_Main
 
                 if (confirmResult == DialogResult.OK)
                 {
-                    ChooseID = idClicked;
-                    MessageBox.Show($"Đã chọn khách hàng có mã: {ChooseID}");
-                    this.Close();
+                    var objKhachHang = _Ser_KhachHang.GetAllKhachhang(null).FirstOrDefault(a => a.Makhachhang == idClicked);
+                    if (objKhachHang.Trangthai == true)
+                    {
+                        ChooseID = idClicked;
+                        MessageBox.Show($"Đã chọn khách hàng có mã: {ChooseID}");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Khách hàng này đã bị khóa.");
+                    }
                 }
                 else
                 {
@@ -99,7 +107,6 @@ namespace PRL.Frm_Main
 
                 Console.WriteLine($"Thông tin chi tiết: {ex.ToString()}");
             }
-
         }
 
         private void dgv_Objects_CellClick(object sender, DataGridViewCellEventArgs e)
