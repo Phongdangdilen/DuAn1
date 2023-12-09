@@ -257,11 +257,15 @@ namespace BanGiay.Form.US
                         MessageBox.Show("Chưa chọn hóa đơn!");
                         return;
                     }
-                    if (formSoluongMua.soLuongMua == 0)
+                    else if (formSoluongMua.soLuongMua == 0)
                     {
                         MessageBox.Show("Vui lòng chọn số lượng hợp lệ");
                     }
+                    else
+                    {
+
                     MessageBox.Show($"Không đủ số lượng! Chỉ còn {objCellClick.giaychitiet.Soluongcon} đôi.");
+                    }
                 }
                 LoadGridSP(null, null);
                 txtTongTienSP.Text = TinhTongTien_HoaDon(dgvHDCT).ToString();
