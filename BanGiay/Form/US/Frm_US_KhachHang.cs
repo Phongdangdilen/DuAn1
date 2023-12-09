@@ -113,6 +113,12 @@ namespace BanGiay.Form.US
                 khachhang.Makhachhang = _idWhenClick;
                 khachhang.Tenkhachhang = txtHoVaTen.Text;
                 khachhang.Sdt = txtSDT.Text;
+                var khachHangID = _service.GetAllKhachhang(null).FirstOrDefault(x => x.Makhachhang == _idWhenClick);
+                if (khachHangID != null && khachHangID.Trangthai == false)
+                {
+                    MessageBox.Show("Không thể sửa khách hàng đang bị khoá.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 // khachhang.Diemkhachhang = int.Parse(txtDiemKH.Text);
                 var relust = MessageBox.Show("Xác nhận muốm sửa", "Xác nhận", MessageBoxButtons.YesNo);
                 if (relust == DialogResult.Yes)
@@ -121,7 +127,6 @@ namespace BanGiay.Form.US
                 }
                 LoadGird(null);
             }
-
         }
 
         private void txtTimkiem_TextChanged(object sender, EventArgs e)

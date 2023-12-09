@@ -34,6 +34,8 @@ namespace DAL.Repositories
                         tenKichCo = _Rep_Giay.GetById(c.Magiaychitiet).tenKichCo,
                         tenGiay = _Rep_Giay.GetById(c.Magiaychitiet).tenGiay,
                         tenThuongHieu = _Rep_Giay.GetById(c.Magiaychitiet).tenThuongHieu,
+                        tongTien = _db.Hoadonchitiets.FirstOrDefault(ph => ph.Mahoadonchitiet == c.Mahoadonchitiet)!.Gia,
+
                     }).ToList();
 
             }

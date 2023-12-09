@@ -233,7 +233,8 @@ namespace BanGiay.Form.US
                     (mauudai == null || p.Mauudai != mauudai) &&
                     ((ngayBatDau >= p.Ngaybatdau && ngayBatDau <= p.Ngayketthuc) ||
                     (ngayKetThuc >= p.Ngaybatdau && ngayKetThuc <= p.Ngayketthuc) ||
-                    (ngayBatDau <= p.Ngaybatdau && ngayKetThuc >= p.Ngayketthuc)));
+                    (ngayBatDau <= p.Ngaybatdau && ngayKetThuc >= p.Ngayketthuc))&&
+                    p.Trangthai!=0) ;
 
             return obj != null;
         }

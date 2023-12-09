@@ -1,5 +1,6 @@
 ﻿using BUS.Services;
 using DAL.Models.DomainClass;
+using DAL.Models.ModelRefer;
 using OfficeOpenXml;
 using PRL;
 using System;
@@ -70,7 +71,7 @@ namespace BanGiay.Form.US
             dgvGCCT.Columns[8].Name = "Số sản phẩm bàn giao";
             dgvGCCT.Columns[9].Name = "Ghi chú";
             dgvGCCT.Columns[10].Name = "Tổng thời gian";
-            dgvGCCT.Columns[11].Name = "Trạng thái";
+            dgvGCCT.Columns[11].Name = "Người cập nhập";
             dgvGCCT.Rows.Clear();
             foreach (var x in _service.giaocanhanviens(search))
             {
@@ -88,7 +89,7 @@ namespace BanGiay.Form.US
                 }
                 var idca = _service.GetGiaocas(null).FirstOrDefault(i => i.Magiaoca == x.Magiaoca);
                 var idnv = _service.GetTaikhoans(null).FirstOrDefault(e => e.Mataikhoan == x.Mataikhoan);
-                dgvGCCT.Rows.Add(stt++, x.Magiaocanhanvien, idnv.Hovaten, idca.Tenca, x.Ngaygiaoca, x.Thoigianden, x.Thoigianve, x.Tiendagiao, x.Sanphamdagiao, x.Ghichu, totalWorking, MapTrangThai(x.Trangthai));
+                dgvGCCT.Rows.Add(stt++, x.Magiaocanhanvien, idnv.Hovaten, idca.Tenca, x.Ngaygiaoca, x.Thoigianden, x.Thoigianve, x.Tiendagiao, x.Sanphamdagiao, x.Ghichu, totalWorking, x.Mataikhoan);
             }
         }
         private string MapTrangThai(int? trangThai)
@@ -178,6 +179,7 @@ namespace BanGiay.Form.US
             GC.Sanphamdagiao = txtSanpham.Text;
             GC.Tiendagiao = float.Parse(txtTienbangiao.Text);
             GC.Ghichu = txtGhichu.Text;
+            GC.Mataikhoan = LoginManager.Instance.IdTaiKhoan;
             if (thoiGianve <= thoiGianden)
             {
                 MessageBox.Show("Thời gian về phải lớn hơn thời gian đến.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -212,6 +214,8 @@ namespace BanGiay.Form.US
             GC.Sanphamdagiao = txtSanpham.Text;
             GC.Tiendagiao = float.Parse(txtTienbangiao.Text);
             GC.Ghichu = txtGhichu.Text;
+            GC.Mataikhoan = LoginManager.Instance.IdTaiKhoan;
+
             if (thoiGianve <= thoiGianden)
             {
                 MessageBox.Show("Thời gian về phải lớn hơn thời gian đến.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);

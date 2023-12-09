@@ -16,5 +16,6 @@ namespace DAL.Models.ModelRefer
         public string tenKichCo { get; set; }
         public string tenMauSac { get; set; }
         public string tenChatLieu { get; set; }
+        public double? tongTien { get; set; }
     }
 }

@@ -86,7 +86,7 @@ namespace BanGiay.Form.US
             _lstHoadonChiTiet = _Ser_HoaDonChiTiet.GetAll(idHoaDOn.ToString(), SearchType);
             foreach (var e in _lstHoadonChiTiet)
             {
-                dgvHDCT.Rows.Add(stt++, e.Hoadonchitiet.Mahoadon, e.tenGiay, e.tenThuongHieu, e.tenKichCo, e.tenMauSac, e.tenChatLieu, e.tenKieuDang, e.Hoadonchitiet.Soluongmua, e.Hoadonchitiet.Gia, e.Hoadonchitiet.Mahoadonchitiet);
+                dgvHDCT.Rows.Add(stt++, e.Hoadonchitiet.Mahoadon, e.tenGiay, e.tenThuongHieu, e.tenKichCo, e.tenMauSac, e.tenChatLieu, e.tenKieuDang, e.Hoadonchitiet.Soluongmua, e.tongTien, e.Hoadonchitiet.Mahoadonchitiet);
             }
             DataGridViewCheckBoxColumn ChooseObj = new DataGridViewCheckBoxColumn();
             ChooseObj.HeaderText = "Chọn";
@@ -394,8 +394,9 @@ namespace BanGiay.Form.US
                             foreach (var item in idHoaDonChiTiet_Clicked)
                             {
                                 var objHoaDonDaCanXoa = _Ser_HoaDonChiTiet.GetByID(item);
-                                objHoaDonDaCanXoa.Soluongmua = objHoaDonDaCanXoa.Soluongmua - soluongMuonXoa;
                                 var objGiayCanSua = _ser_GiayChiTiet.GetByID(objHoaDonDaCanXoa.Magiaychitiet);
+                                objHoaDonDaCanXoa.Soluongmua = objHoaDonDaCanXoa.Soluongmua - soluongMuonXoa;
+                                objHoaDonDaCanXoa.Gia = objHoaDonDaCanXoa.Soluongmua * objGiayCanSua.Gia;
                                 objGiayCanSua.Soluongcon = objGiayCanSua.Soluongcon + soluongMuonXoa;
                                 var a = _ser_GiayChiTiet.Sua(objHoaDonDaCanXoa.Magiaychitiet, objGiayCanSua);
                                 if (objHoaDonDaCanXoa.Soluongmua <= 0)

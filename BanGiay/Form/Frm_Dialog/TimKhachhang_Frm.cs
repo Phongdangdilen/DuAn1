@@ -112,7 +112,11 @@ namespace PRL.Frm_Main
         private void dgv_Objects_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
-
+            if (index < 0 || index >= _Ser_KhachHang.GetAllKhachhang(null).Count)
+            {
+                return;
+            }
+            
             idClicked = int.Parse(dgv_Objects.Rows[index].Cells[1].Value.ToString());
             var khach = _Ser_KhachHang.GetAllKhachhang(null).FirstOrDefault(x => x.Makhachhang == idClicked);
             txtTen.Text = khach.Tenkhachhang;
